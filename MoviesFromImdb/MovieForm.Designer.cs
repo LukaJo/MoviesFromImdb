@@ -1,6 +1,6 @@
 ﻿namespace MoviesFromImdb
 {
-    partial class Form1
+    partial class MovieForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieForm));
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tbTitle = new System.Windows.Forms.TextBox();
@@ -48,19 +49,23 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnAddToWatchlist = new System.Windows.Forms.Button();
+            this.btnWatchList = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(211, 35);
+            this.tbSearch.Location = new System.Drawing.Point(159, 44);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(337, 20);
             this.tbSearch.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(349, 70);
+            this.btnSearch.Location = new System.Drawing.Point(278, 70);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 2;
@@ -217,17 +222,50 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(333, 9);
+            this.label9.Location = new System.Drawing.Point(265, 21);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 13);
             this.label9.TabIndex = 20;
             this.label9.Text = "Enter the movie name :";
             // 
-            // Form1
+            // btnAddToWatchlist
+            // 
+            this.btnAddToWatchlist.Location = new System.Drawing.Point(159, 446);
+            this.btnAddToWatchlist.Name = "btnAddToWatchlist";
+            this.btnAddToWatchlist.Size = new System.Drawing.Size(105, 23);
+            this.btnAddToWatchlist.TabIndex = 21;
+            this.btnAddToWatchlist.Text = "Add to Watchlist";
+            this.btnAddToWatchlist.UseVisualStyleBackColor = true;
+            this.btnAddToWatchlist.Click += new System.EventHandler(this.btnAddToWatchlist_Click);
+            // 
+            // btnWatchList
+            // 
+            this.btnWatchList.Location = new System.Drawing.Point(421, 446);
+            this.btnWatchList.Name = "btnWatchList";
+            this.btnWatchList.Size = new System.Drawing.Size(75, 23);
+            this.btnWatchList.TabIndex = 22;
+            this.btnWatchList.Text = "Watchlist";
+            this.btnWatchList.UseVisualStyleBackColor = true;
+            this.btnWatchList.Click += new System.EventHandler(this.btnWatchList_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MoviesFromImdb.Properties.Resources.IMDB_Logo_2016;
+            this.pictureBox1.Location = new System.Drawing.Point(573, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(202, 72);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
+            // 
+            // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 481);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnWatchList);
+            this.Controls.Add(this.btnAddToWatchlist);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -248,11 +286,12 @@
             this.Controls.Add(this.tbTitle);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.tbSearch);
-            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(816, 489);
-            this.Name = "Form1";
+            this.Name = "MovieForm";
             this.Text = "Search for Movie";
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +318,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnAddToWatchlist;
+        private System.Windows.Forms.Button btnWatchList;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
