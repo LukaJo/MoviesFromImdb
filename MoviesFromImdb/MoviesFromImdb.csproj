@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IMDB_Logo_2016.png" />
+    <Content Include="WhatsApp-logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

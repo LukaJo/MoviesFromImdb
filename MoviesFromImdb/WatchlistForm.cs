@@ -21,8 +21,6 @@ namespace MoviesFromImdb
         {
             InitializeComponent();
             FillUpGrid();
-
-
         }
 
         public void FillUpGrid() {
@@ -166,7 +164,7 @@ namespace MoviesFromImdb
 
             if (watched == "N")
             {
-                gridMovies.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.OrangeRed;
+                gridMovies.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
             }
             if (watched == "Y")
             {
@@ -196,6 +194,7 @@ namespace MoviesFromImdb
             }
         }
 
+        #region filter by Title
         private void tbTitle_TextChanged(object sender, EventArgs e)
         {
             bsMovies.Filter = string.Format("Title LIKE '%{0}%'", tbTitle.Text);
@@ -216,12 +215,14 @@ namespace MoviesFromImdb
             {
                 tbTitle.ForeColor = Color.DarkGray;
                 tbTitle.Text = "Title...";
-                //FillUpGrid(); //check
-
+                bsMovies.RemoveFilter();
             }
 
         }
 
+        #endregion
+
+        #region Excel
         private void copyAlltoClipboardFromGrid()
         {
             gridMovies.SelectAll();
@@ -266,7 +267,7 @@ namespace MoviesFromImdb
                 Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
 
-                // Format column D as text before pasting results, this was required for my data
+                // Format column C as text before pasting results, this was required for my data
                 Excel.Range rng = xlWorkSheet.get_Range("C:C").Cells;
                 rng.NumberFormat = "@";
 
@@ -275,12 +276,13 @@ namespace MoviesFromImdb
                 CR.Select();
                 xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
 
+                //add header text from columns in datagridview to worksheet
                 for (int i = 0; i < gridMovies.Columns.Count; i++)
                 {
                     xlWorkSheet.Cells[1, i + 1] = gridMovies.Columns[i].HeaderText;
                 }
 
-                // Delete blank column A 
+                // Delete blank column K
                 Excel.Range delRng = xlWorkSheet.get_Range("K:K").Cells;
                 delRng.Delete(Type.Missing);
  
@@ -304,12 +306,38 @@ namespace MoviesFromImdb
                     System.Diagnostics.Process.Start(sfd.FileName);
             }
         }
-
+        #endregion
 
         private void btnShare_Click(object sender, EventArgs e)
         {
             EmailForm frm = new EmailForm();
             frm.ShowDialog();
+            
+        }
+
+        private void btnWa_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Title: ");
+            sb.Append(gridMovies["Title", gridMovies.CurrentCell.RowIndex].Value.ToString());
+            sb.Append(" ");
+            sb.Append("Genre: ");
+            sb.Append(gridMovies["Genre", gridMovies.CurrentCell.RowIndex].Value.ToString());
+            sb.Append(" ");
+            sb.Append("Actors: ");
+            sb.Append(gridMovies["Actors", gridMovies.CurrentCell.RowIndex].Value.ToString());
+            sb.Append(" ");
+            sb.Append("Plot: ");
+            sb.Append(gridMovies["Plot", gridMovies.CurrentCell.RowIndex].Value.ToString());
+            sb.Append(" ");
+            sb.Append("IMDb Rating: ");
+            sb.Append(gridMovies["imdbRating", gridMovies.CurrentCell.RowIndex].Value.ToString());
+            sb.Append(" ");
+            sb.Append("Metascore: ");
+            sb.Append(gridMovies["Metascore", gridMovies.CurrentCell.RowIndex].Value.ToString());
+            
+
+            System.Diagnostics.Process.Start("https://api.whatsapp.com/send?phone=yourphonehere&text=" + sb.ToString()); 
         }
     }
 }

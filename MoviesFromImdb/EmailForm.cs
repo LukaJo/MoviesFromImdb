@@ -40,6 +40,7 @@ namespace MoviesFromImdb
                 if (!File.Exists(@"C:\Users\your\Documents\My_Wishlist.xls"))
                 {
                     MessageBox.Show("Please make wishlist first!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
 
                 attachment = new System.Net.Mail.Attachment(@"C:\Users\your\Documents\My_Wishlist.xls");

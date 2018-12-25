@@ -287,7 +287,8 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.tbSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.MaximumSize = new System.Drawing.Size(816, 520);
+            this.MinimumSize = new System.Drawing.Size(816, 520);
             this.Name = "MovieForm";
             this.Text = "Search for Movie";
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();

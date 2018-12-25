@@ -47,8 +47,6 @@ namespace MoviesFromImdb
                     tbPlot.Text = obj.Plot;
                     tbMetascore.Text = obj.Metascore;
                     pbPoster.ImageLocation = obj.Poster;
-
-
                 }
                 else
                 {
@@ -63,7 +61,7 @@ namespace MoviesFromImdb
         {
             if (string.IsNullOrEmpty(tbTitle.Text) && string.IsNullOrEmpty(tbYear.Text) && string.IsNullOrEmpty(tbRated.Text) && string.IsNullOrEmpty(tbReleased.Text) && string.IsNullOrEmpty(tbGenre.Text) && string.IsNullOrEmpty(tbActors.Text) && string.IsNullOrEmpty(tbPlot.Text) && string.IsNullOrEmpty(tbMetascore.Text) && string.IsNullOrEmpty(pbPoster.ImageLocation))
             {
-                MessageBox.Show("Field cannot be empty!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Fields cannot be empty!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -94,7 +92,7 @@ namespace MoviesFromImdb
                     }
                     else
                     {
-                        MessageBox.Show("Error:Movie already exist in your watchlist!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Movie already exist in your watchlist!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
  
 

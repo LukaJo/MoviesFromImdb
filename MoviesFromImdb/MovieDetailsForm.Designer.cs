@@ -242,6 +242,8 @@
             this.Controls.Add(this.tbYear);
             this.Controls.Add(this.tbTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(816, 439);
+            this.MinimumSize = new System.Drawing.Size(816, 439);
             this.Name = "MovieDetailsForm";
             this.Text = "Movie Detail ";
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();

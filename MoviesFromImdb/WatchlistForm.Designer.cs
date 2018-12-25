@@ -36,12 +36,12 @@
             this.miMovieDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.miChangeStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.miDeleteMovie = new System.Windows.Forms.ToolStripMenuItem();
-            this.bsMovies = new System.Windows.Forms.BindingSource(this.components);
             this.lblFound = new System.Windows.Forms.Label();
             this.chbWatched = new System.Windows.Forms.CheckBox();
             this.chbNotWatched = new System.Windows.Forms.CheckBox();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.btnShare = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imdbRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,8 @@
             this.Poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Watched = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnShare = new System.Windows.Forms.Button();
+            this.bsMovies = new System.Windows.Forms.BindingSource(this.components);
+            this.btnWa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridMovies)).BeginInit();
             this.cmsOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMovies)).BeginInit();
@@ -94,7 +95,7 @@
             this.gridMovies.Name = "gridMovies";
             this.gridMovies.ReadOnly = true;
             this.gridMovies.RowHeadersVisible = false;
-            this.gridMovies.Size = new System.Drawing.Size(776, 324);
+            this.gridMovies.Size = new System.Drawing.Size(776, 339);
             this.gridMovies.TabIndex = 0;
             this.gridMovies.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridMovies_CellFormatting);
             this.gridMovies.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridMovies_CellMouseDown);
@@ -129,10 +130,6 @@
             this.miDeleteMovie.Size = new System.Drawing.Size(190, 22);
             this.miDeleteMovie.Text = "Delete movie from list";
             this.miDeleteMovie.Click += new System.EventHandler(this.miDeleteMovie_Click);
-            // 
-            // bsMovies
-            // 
-            this.bsMovies.CurrentChanged += new System.EventHandler(this.bsMovies_CurrentChanged);
             // 
             // lblFound
             // 
@@ -176,7 +173,7 @@
             this.tbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbTitle.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbTitle.ForeColor = System.Drawing.Color.DarkGray;
-            this.tbTitle.Location = new System.Drawing.Point(12, 359);
+            this.tbTitle.Location = new System.Drawing.Point(12, 389);
             this.tbTitle.MinimumSize = new System.Drawing.Size(139, 20);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(139, 20);
@@ -188,13 +185,25 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(329, 390);
+            this.btnExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcel.Location = new System.Drawing.Point(308, 386);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(140, 23);
+            this.btnExcel.Size = new System.Drawing.Size(156, 23);
             this.btnExcel.TabIndex = 72;
-            this.btnExcel.Text = "Make Excel";
+            this.btnExcel.Text = "Make excel";
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // btnShare
+            // 
+            this.btnShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShare.Location = new System.Drawing.Point(473, 387);
+            this.btnShare.Name = "btnShare";
+            this.btnShare.Size = new System.Drawing.Size(153, 23);
+            this.btnShare.TabIndex = 73;
+            this.btnShare.Text = "Share watchlist to friend";
+            this.btnShare.UseVisualStyleBackColor = true;
+            this.btnShare.Click += new System.EventHandler(this.btnShare_Click);
             // 
             // Title
             // 
@@ -202,6 +211,7 @@
             this.Title.HeaderText = "Title";
             this.Title.Name = "Title";
             this.Title.ReadOnly = true;
+            this.Title.Width = 210;
             // 
             // Year
             // 
@@ -209,6 +219,7 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             this.Year.ReadOnly = true;
+            this.Year.Width = 50;
             // 
             // imdbRating
             // 
@@ -216,6 +227,7 @@
             this.imdbRating.HeaderText = "IMDb Rating";
             this.imdbRating.Name = "imdbRating";
             this.imdbRating.ReadOnly = true;
+            this.imdbRating.Width = 50;
             // 
             // Released
             // 
@@ -230,6 +242,7 @@
             this.Genre.HeaderText = "Genre";
             this.Genre.Name = "Genre";
             this.Genre.ReadOnly = true;
+            this.Genre.Width = 150;
             // 
             // Actors
             // 
@@ -237,6 +250,7 @@
             this.Actors.HeaderText = "Actors";
             this.Actors.Name = "Actors";
             this.Actors.ReadOnly = true;
+            this.Actors.Width = 210;
             // 
             // Plot
             // 
@@ -244,6 +258,7 @@
             this.Plot.HeaderText = "Plot";
             this.Plot.Name = "Plot";
             this.Plot.ReadOnly = true;
+            this.Plot.Width = 400;
             // 
             // Metascore
             // 
@@ -251,6 +266,7 @@
             this.Metascore.HeaderText = "Metascore";
             this.Metascore.Name = "Metascore";
             this.Metascore.ReadOnly = true;
+            this.Metascore.Width = 80;
             // 
             // Poster
             // 
@@ -267,6 +283,7 @@
             this.Watched.HeaderText = "Watched";
             this.Watched.Name = "Watched";
             this.Watched.ReadOnly = true;
+            this.Watched.Width = 70;
             // 
             // MovieId
             // 
@@ -276,21 +293,27 @@
             this.MovieId.ReadOnly = true;
             this.MovieId.Visible = false;
             // 
-            // btnShare
+            // bsMovies
             // 
-            this.btnShare.Location = new System.Drawing.Point(528, 389);
-            this.btnShare.Name = "btnShare";
-            this.btnShare.Size = new System.Drawing.Size(153, 23);
-            this.btnShare.TabIndex = 73;
-            this.btnShare.Text = "Share watchlist to friend";
-            this.btnShare.UseVisualStyleBackColor = true;
-            this.btnShare.Click += new System.EventHandler(this.btnShare_Click);
+            this.bsMovies.CurrentChanged += new System.EventHandler(this.bsMovies_CurrentChanged);
+            // 
+            // btnWa
+            // 
+            this.btnWa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnWa.Location = new System.Drawing.Point(632, 386);
+            this.btnWa.Name = "btnWa";
+            this.btnWa.Size = new System.Drawing.Size(156, 23);
+            this.btnWa.TabIndex = 74;
+            this.btnWa.Text = "Send to WhatsApp";
+            this.btnWa.UseVisualStyleBackColor = true;
+            this.btnWa.Click += new System.EventHandler(this.btnWa_Click);
             // 
             // WatchlistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 460);
+            this.ClientSize = new System.Drawing.Size(800, 425);
+            this.Controls.Add(this.btnWa);
             this.Controls.Add(this.btnShare);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.tbTitle);
@@ -299,6 +322,7 @@
             this.Controls.Add(this.lblFound);
             this.Controls.Add(this.gridMovies);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(816, 464);
             this.Name = "WatchlistForm";
             this.Text = "Watchlist";
             ((System.ComponentModel.ISupportInitialize)(this.gridMovies)).EndInit();
@@ -322,6 +346,7 @@
         private System.Windows.Forms.CheckBox chbNotWatched;
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DataGridViewTextBoxColumn imdbRating;
@@ -333,6 +358,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Poster;
         private System.Windows.Forms.DataGridViewTextBoxColumn Watched;
         private System.Windows.Forms.DataGridViewTextBoxColumn MovieId;
-        private System.Windows.Forms.Button btnShare;
+        private System.Windows.Forms.Button btnWa;
     }
 }
