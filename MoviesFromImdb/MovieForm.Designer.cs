@@ -52,6 +52,7 @@
             this.btnAddToWatchlist = new System.Windows.Forms.Button();
             this.btnWatchList = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.brnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,9 +66,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(278, 70);
+            this.btnSearch.Location = new System.Drawing.Point(268, 70);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(105, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -230,7 +231,7 @@
             // 
             // btnAddToWatchlist
             // 
-            this.btnAddToWatchlist.Location = new System.Drawing.Point(159, 446);
+            this.btnAddToWatchlist.Location = new System.Drawing.Point(268, 449);
             this.btnAddToWatchlist.Name = "btnAddToWatchlist";
             this.btnAddToWatchlist.Size = new System.Drawing.Size(105, 23);
             this.btnAddToWatchlist.TabIndex = 21;
@@ -240,9 +241,9 @@
             // 
             // btnWatchList
             // 
-            this.btnWatchList.Location = new System.Drawing.Point(421, 446);
+            this.btnWatchList.Location = new System.Drawing.Point(443, 446);
             this.btnWatchList.Name = "btnWatchList";
-            this.btnWatchList.Size = new System.Drawing.Size(75, 23);
+            this.btnWatchList.Size = new System.Drawing.Size(105, 23);
             this.btnWatchList.TabIndex = 22;
             this.btnWatchList.Text = "Watchlist";
             this.btnWatchList.UseVisualStyleBackColor = true;
@@ -258,11 +259,22 @@
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
+            // brnRefresh
+            // 
+            this.brnRefresh.Location = new System.Drawing.Point(97, 449);
+            this.brnRefresh.Name = "brnRefresh";
+            this.brnRefresh.Size = new System.Drawing.Size(105, 23);
+            this.brnRefresh.TabIndex = 24;
+            this.brnRefresh.Text = "Refresh";
+            this.brnRefresh.UseVisualStyleBackColor = true;
+            this.brnRefresh.Click += new System.EventHandler(this.brnRefresh_Click);
+            // 
             // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 481);
+            this.Controls.Add(this.brnRefresh);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnWatchList);
             this.Controls.Add(this.btnAddToWatchlist);
@@ -322,6 +334,7 @@
         private System.Windows.Forms.Button btnAddToWatchlist;
         private System.Windows.Forms.Button btnWatchList;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button brnRefresh;
     }
 }
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoviesFromImdb
+﻿namespace MoviesFromImdb
 {
     public class ImdbEntity
     {
@@ -28,8 +22,6 @@ namespace MoviesFromImdb
         //public string Awards { get; set; }
         //public string Director { get; set; }
         //public string Writer { get; set; }
-
-
 
     }
 }

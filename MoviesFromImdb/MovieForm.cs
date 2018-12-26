@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace MoviesFromImdb
 {
@@ -36,6 +31,7 @@ namespace MoviesFromImdb
                 JavaScriptSerializer oJS = new JavaScriptSerializer();
                 ImdbEntity obj = new ImdbEntity();
                 obj = oJS.Deserialize<ImdbEntity>(json);
+
                 if (obj.Response == "True")
                 {
                     tbTitle.Text = obj.Title;
@@ -65,9 +61,10 @@ namespace MoviesFromImdb
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection())
+            var connectionString = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.ConnectionString = @"Data Source=BG01022W034\SQLEXPRESS;Initial Catalog=Movies;Integrated Security=True";
                 using (SqlCommand cmd = new SqlCommand("AddNewMovie", conn))
                 {
                     conn.Open();
@@ -84,7 +81,6 @@ namespace MoviesFromImdb
                     cmd.Parameters.AddWithValue("@Poster", pbPoster.ImageLocation);
 
                     var i = cmd.ExecuteNonQuery();
-                    conn.Close();
 
                     if (i >= 1)
                     {
@@ -94,7 +90,7 @@ namespace MoviesFromImdb
                     {
                         MessageBox.Show("Movie already exist in your watchlist!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
- 
+
 
                 }
             }
@@ -104,6 +100,11 @@ namespace MoviesFromImdb
         {
             WatchlistForm frm = new WatchlistForm();
             frm.ShowDialog();
+        }
+
+        private void brnRefresh_Click(object sender, EventArgs e)
+        {
+            tbActors.Text = tbGenre.Text = tbMetascore.Text = tbPlot.Text = tbRated.Text = tbReleased.Text = tbSearch.Text = tbTitle.Text = tbYear.Text = pbPoster.ImageLocation = string.Empty;
         }
     }
 }

@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Configuration;
 
 namespace MoviesFromImdb
 {
     public partial class WatchlistForm : Form
     {
         private DataSet dsMovies;
+        string connectionString = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
 
         public WatchlistForm()
         {
@@ -23,7 +22,8 @@ namespace MoviesFromImdb
             FillUpGrid();
         }
 
-        public void FillUpGrid() {
+        public void FillUpGrid()
+        {
 
             dsMovies = GetAllMovies();
             bsMovies.DataSource = dsMovies.Tables[0];
@@ -33,9 +33,8 @@ namespace MoviesFromImdb
         public DataSet GetAllMovies()
         {
 
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.ConnectionString = @"Data Source=BG01022W034\SQLEXPRESS;Initial Catalog=Movies;Integrated Security=True";
                 using (SqlCommand cmd = new SqlCommand("GetAllMovies", conn))
                 {
                     conn.Open();
@@ -47,10 +46,7 @@ namespace MoviesFromImdb
                     DataSet ds = new DataSet();
                     da.Fill(ds);
 
-                    conn.Close();
-
                     return ds;
-
                 }
             }
 
@@ -69,7 +65,7 @@ namespace MoviesFromImdb
             {
                 miMovieDetails.Enabled = true;
                 miDeleteMovie.Enabled = true;
-                if (gridMovies["Watched",gridMovies.CurrentCell.RowIndex].Value.ToString() != "N")
+                if (gridMovies["Watched", gridMovies.CurrentCell.RowIndex].Value.ToString() != "N")
                 {
                     miChangeStatus.Enabled = false;
                 }
@@ -99,9 +95,8 @@ namespace MoviesFromImdb
 
         private void miChangeStatus_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.ConnectionString = @"Data Source=BG01022W034\SQLEXPRESS;Initial Catalog=Movies;Integrated Security=True";
                 using (SqlCommand cmd = new SqlCommand("ChangeWatchedStatus", conn))
                 {
                     conn.Open();
@@ -109,12 +104,16 @@ namespace MoviesFromImdb
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("MovieId", gridMovies["MovieId", gridMovies.CurrentCell.RowIndex].Value.ToString());
 
-                    cmd.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
+                    var i = cmd.ExecuteNonQuery();
 
-                    conn.Close();
+                    if (i >= 1)
+                    {
+                        MessageBox.Show("Movie status changed from not watched to watched!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Movie status cannot change!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
                 }
             }
@@ -130,9 +129,8 @@ namespace MoviesFromImdb
               DialogResult.Yes)
                 return;
 
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.ConnectionString = @"Data Source=BG01022W034\SQLEXPRESS;Initial Catalog=Movies;Integrated Security=True";
                 using (SqlCommand cmd = new SqlCommand("DeleteMovie", conn))
                 {
                     conn.Open();
@@ -140,12 +138,16 @@ namespace MoviesFromImdb
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("MovieId", gridMovies["MovieId", gridMovies.CurrentCell.RowIndex].Value.ToString());
 
-                    cmd.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
+                    var i = cmd.ExecuteNonQuery();
 
-                    conn.Close();
+                    if (i >= 1)
+                    {
+                        MessageBox.Show("Movie deleted from watchlist!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Movie delete failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
                 }
             }
@@ -253,7 +255,7 @@ namespace MoviesFromImdb
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Excel Documents (*.xls)|*.xls";
-            sfd.FileName = "My_Wishlist.xls";
+            sfd.FileName = "My_Watchlist.xls";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 // Copy DataGridView results to clipboard
@@ -276,7 +278,7 @@ namespace MoviesFromImdb
                 CR.Select();
                 xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
 
-                //add header text from columns in datagridview to worksheet
+                // Add header text from columns in datagridview to worksheet
                 for (int i = 0; i < gridMovies.Columns.Count; i++)
                 {
                     xlWorkSheet.Cells[1, i + 1] = gridMovies.Columns[i].HeaderText;
@@ -285,7 +287,7 @@ namespace MoviesFromImdb
                 // Delete blank column K
                 Excel.Range delRng = xlWorkSheet.get_Range("K:K").Cells;
                 delRng.Delete(Type.Missing);
- 
+
 
                 // Save the excel file under the captured location from the SaveFileDialog
                 xlWorkBook.SaveAs(sfd.FileName, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
@@ -312,7 +314,7 @@ namespace MoviesFromImdb
         {
             EmailForm frm = new EmailForm();
             frm.ShowDialog();
-            
+
         }
 
         private void btnWa_Click(object sender, EventArgs e)
@@ -335,9 +337,9 @@ namespace MoviesFromImdb
             sb.Append(" ");
             sb.Append("Metascore: ");
             sb.Append(gridMovies["Metascore", gridMovies.CurrentCell.RowIndex].Value.ToString());
-            
 
-            System.Diagnostics.Process.Start("https://api.whatsapp.com/send?phone=yourphonehere&text=" + sb.ToString()); 
+
+            System.Diagnostics.Process.Start("https://api.whatsapp.com/send?phone=yourphonehere&text=" + sb.ToString());
         }
     }
 }

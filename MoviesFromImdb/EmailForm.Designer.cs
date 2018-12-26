@@ -36,7 +36,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(96, 27);
+            this.label1.Location = new System.Drawing.Point(107, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 0;
@@ -44,14 +44,14 @@
             // 
             // tbSendEmail
             // 
-            this.tbSendEmail.Location = new System.Drawing.Point(80, 62);
+            this.tbSendEmail.Location = new System.Drawing.Point(32, 62);
             this.tbSendEmail.Name = "tbSendEmail";
-            this.tbSendEmail.Size = new System.Drawing.Size(132, 20);
+            this.tbSendEmail.Size = new System.Drawing.Size(243, 20);
             this.tbSendEmail.TabIndex = 1;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(99, 110);
+            this.btnSubmit.Location = new System.Drawing.Point(116, 110);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 2;
