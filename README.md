@@ -24,6 +24,14 @@ https://github.com/LukaJo/MoviesFromImdb
 3. Select a folder where you want your cloned repo to be kept.
 4. Select Clone to clone the repo.
 
+## Note
+
+You need to generate API key from [OMDb API(The Open Movie Database)](http://www.omdbapi.com/) and replace in project.
+
+Also you need to replace phone number(for sending to WhatsApp),email and email password(for sending email to friend),paths on your computer(to find generated excel file) and connection string in App.config(to connect to your database).
+
+Database with table and stored procedures are given [here](https://github.com/LukaJo/MoviesFromImdb/blob/master/Imdbscript.sql).You can select all and import in your database.
+
 ## Motivation
 
 I love to watch movies so i decide to make an application. :)
@@ -35,7 +43,7 @@ This app is developed in C# with Visual Studio Community 2017 and SQL Server 201
 [OMDb API(The Open Movie Database)](http://www.omdbapi.com/) is used in this application.
 The OMDb API is a RESTful web service to obtain movie information, all content and images on the site are contributed and maintained by our users.
 
-## Developer
+## Author
 [Luka Jovic](https://www.linkedin.com/in/lukajovic/)
 
 ## Contributing
@@ -44,4 +52,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
