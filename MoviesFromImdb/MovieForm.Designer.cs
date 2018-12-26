@@ -53,20 +53,24 @@
             this.btnWatchList = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.brnRefresh = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbYearParameter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(159, 44);
+            this.tbSearch.Location = new System.Drawing.Point(132, 13);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(337, 20);
             this.tbSearch.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(268, 70);
+            this.btnSearch.Location = new System.Drawing.Point(238, 65);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 23);
             this.btnSearch.TabIndex = 2;
@@ -223,11 +227,11 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(265, 21);
+            this.label9.Location = new System.Drawing.Point(6, 16);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 13);
+            this.label9.Size = new System.Drawing.Size(120, 13);
             this.label9.TabIndex = 20;
-            this.label9.Text = "Enter the movie name :";
+            this.label9.Text = "*Enter the movie name :";
             // 
             // btnAddToWatchlist
             // 
@@ -269,16 +273,45 @@
             this.brnRefresh.UseVisualStyleBackColor = true;
             this.brnRefresh.Click += new System.EventHandler(this.brnRefresh_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbYearParameter);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.tbSearch);
+            this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Location = new System.Drawing.Point(30, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(518, 104);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 39);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Year :";
+            // 
+            // tbYearParameter
+            // 
+            this.tbYearParameter.Location = new System.Drawing.Point(132, 39);
+            this.tbYearParameter.Name = "tbYearParameter";
+            this.tbYearParameter.Size = new System.Drawing.Size(100, 20);
+            this.tbYearParameter.TabIndex = 22;
+            // 
             // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 481);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.brnRefresh);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnWatchList);
             this.Controls.Add(this.btnAddToWatchlist);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -296,15 +329,17 @@
             this.Controls.Add(this.tbRated);
             this.Controls.Add(this.tbYear);
             this.Controls.Add(this.tbTitle);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.tbSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(816, 520);
             this.MinimumSize = new System.Drawing.Size(816, 520);
             this.Name = "MovieForm";
             this.Text = "Search for Movie";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MovieForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,6 +370,9 @@
         private System.Windows.Forms.Button btnWatchList;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button brnRefresh;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tbYearParameter;
+        private System.Windows.Forms.Label label10;
     }
 }
 

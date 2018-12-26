@@ -24,7 +24,24 @@ namespace MoviesFromImdb
                 return;
             }
 
-            string url = "http://www.omdbapi.com/?t=" + tbSearch.Text.Trim() + "&apikey=e17f08db";
+            string url;
+            if (string.IsNullOrEmpty(tbYearParameter.Text))
+            {
+                url = "http://www.omdbapi.com/?t=" + tbSearch.Text.Trim() + "&apikey=e17f08db";
+            }
+            else
+            {
+
+                int YearParameterNumber;
+                if (!int.TryParse(tbYearParameter.Text, out YearParameterNumber))
+                {
+                    MessageBox.Show("The Year format is bad;Enter only year!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                url = "http://www.omdbapi.com/?t=" + tbSearch.Text.Trim() + "&y=" + tbYearParameter.Text.Trim() + "&apikey=e17f08db";
+            }
+
             using (WebClient wc = new WebClient())
             {
                 var json = wc.DownloadString(url);
@@ -104,7 +121,14 @@ namespace MoviesFromImdb
 
         private void brnRefresh_Click(object sender, EventArgs e)
         {
-            tbActors.Text = tbGenre.Text = tbMetascore.Text = tbPlot.Text = tbRated.Text = tbReleased.Text = tbSearch.Text = tbTitle.Text = tbYear.Text = pbPoster.ImageLocation = string.Empty;
+            tbActors.Text = tbGenre.Text = tbMetascore.Text = tbPlot.Text = tbRated.Text = tbReleased.Text = tbSearch.Text = tbTitle.Text = tbYear.Text = tbYearParameter.Text = pbPoster.ImageLocation = string.Empty;
+        }
+
+        private void MovieForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+
+            if (e.KeyCode == Keys.Enter) btnSearch.PerformClick();
         }
     }
 }

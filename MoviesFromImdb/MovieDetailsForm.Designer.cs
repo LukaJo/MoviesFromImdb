@@ -242,10 +242,12 @@
             this.Controls.Add(this.tbYear);
             this.Controls.Add(this.tbTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(816, 439);
             this.MinimumSize = new System.Drawing.Size(816, 439);
             this.Name = "MovieDetailsForm";
             this.Text = "Movie Detail ";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MovieDetailsForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

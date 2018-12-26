@@ -52,5 +52,14 @@ namespace MoviesFromImdb
             _bsMovies.MoveNext();
             FillUpFields(_bsMovies);
         }
+
+        private void MovieDetailsForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+
+            if (e.KeyCode == Keys.Right) btnRight.PerformClick();
+
+            if (e.KeyCode == Keys.Left) btnLeft.PerformClick();
+        }
     }
 }

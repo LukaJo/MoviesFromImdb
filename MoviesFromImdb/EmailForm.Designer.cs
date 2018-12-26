@@ -67,10 +67,12 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.tbSendEmail);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(317, 198);
             this.MinimumSize = new System.Drawing.Size(317, 198);
             this.Name = "EmailForm";
             this.Text = "E-mail to friend";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EmailForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

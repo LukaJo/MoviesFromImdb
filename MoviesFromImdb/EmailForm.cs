@@ -69,5 +69,12 @@ namespace MoviesFromImdb
 
 
         }
+
+        private void EmailForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+
+            if (e.KeyCode == Keys.Enter) btnSubmit.PerformClick();
+        }
     }
 }

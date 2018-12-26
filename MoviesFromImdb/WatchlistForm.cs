@@ -341,5 +341,11 @@ namespace MoviesFromImdb
 
             System.Diagnostics.Process.Start("https://api.whatsapp.com/send?phone=yourphonehere&text=" + sb.ToString());
         }
+
+        private void WatchlistForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+
+        }
     }
 }
