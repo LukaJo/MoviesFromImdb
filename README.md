@@ -10,6 +10,8 @@ You can make excel file with all movies in your watchlist and send by e-mail to 
 
 Also you can send movie details from watchlist to friend's WhatsApp(using WhatsApp API).
 
+Also you can see top 100 IMDb movies with options to show movie details and add them to your watchlist.
+
 ## Installation
 
 Clone from Git 
@@ -28,7 +30,7 @@ https://github.com/LukaJo/MoviesFromImdb
 
 You need to generate API key from [OMDb API(The Open Movie Database)](http://www.omdbapi.com/) and replace in project.
 
-Also you need to replace phone number(for sending to WhatsApp),email and email password(for sending email to friend),paths on your computer(to find generated excel file) and connection string in App.config(to connect to your database).
+Also you need to replace phone number(for sending to WhatsApp),email and email password(for sending email to friend),paths on your computer(to find generated excel file and for top100.json file located [here](https://github.com/LukaJo/MoviesFromImdb/blob/master/MoviesFromImdb/top100.json)) and connection string in App.config(to connect to your database).
 
 Database with table and stored procedures are given [here](https://github.com/LukaJo/MoviesFromImdb/blob/master/Imdbscript.sql).You can select all and import in your database.
 
@@ -48,8 +50,6 @@ The OMDb API is a RESTful web service to obtain movie information, all content a
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
