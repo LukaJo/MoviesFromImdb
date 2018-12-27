@@ -1,20 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Configuration;
 
 namespace MoviesFromImdb
 {
     public partial class WatchlistForm : Form
     {
         private DataSet dsMovies;
-        string connectionString = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
 
         public WatchlistForm()
         {
@@ -25,33 +22,11 @@ namespace MoviesFromImdb
         public void FillUpGrid()
         {
 
-            dsMovies = GetAllMovies();
+            dsMovies = DAL.GetAllMovies();
             bsMovies.DataSource = dsMovies.Tables[0];
             gridMovies.DataSource = bsMovies;
         }
 
-        public DataSet GetAllMovies()
-        {
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("GetAllMovies", conn))
-                {
-                    conn.Open();
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-
-                    return ds;
-                }
-            }
-
-
-        }
 
         private void cmsOptions_Opening(object sender, CancelEventArgs e)
         {
@@ -95,28 +70,7 @@ namespace MoviesFromImdb
 
         private void miChangeStatus_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("ChangeWatchedStatus", conn))
-                {
-                    conn.Open();
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("MovieId", gridMovies["MovieId", gridMovies.CurrentCell.RowIndex].Value.ToString());
-
-                    var i = cmd.ExecuteNonQuery();
-
-                    if (i >= 1)
-                    {
-                        MessageBox.Show("Movie status changed from not watched to watched!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Movie status cannot change!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                }
-            }
+            DAL.ChangeMovieStatus(gridMovies["MovieId", gridMovies.CurrentCell.RowIndex].Value.ToString());
 
             FillUpGrid();
 
@@ -129,28 +83,7 @@ namespace MoviesFromImdb
               DialogResult.Yes)
                 return;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("DeleteMovie", conn))
-                {
-                    conn.Open();
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("MovieId", gridMovies["MovieId", gridMovies.CurrentCell.RowIndex].Value.ToString());
-
-                    var i = cmd.ExecuteNonQuery();
-
-                    if (i >= 1)
-                    {
-                        MessageBox.Show("Movie deleted from watchlist!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Movie delete failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                }
-            }
+            DAL.DeleteMovie(gridMovies["MovieId", gridMovies.CurrentCell.RowIndex].Value.ToString());
 
             FillUpGrid();
         }

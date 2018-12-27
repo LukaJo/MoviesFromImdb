@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data;
 using System.Net;
 using System.Windows.Forms;
-using System.Web.Script.Serialization;
-using System.Data.SqlClient;
-using System.Configuration;
+using Newtonsoft.Json;
 
 namespace MoviesFromImdb
 {
@@ -45,21 +42,19 @@ namespace MoviesFromImdb
             using (WebClient wc = new WebClient())
             {
                 var json = wc.DownloadString(url);
-                JavaScriptSerializer oJS = new JavaScriptSerializer();
-                ImdbEntity obj = new ImdbEntity();
-                obj = oJS.Deserialize<ImdbEntity>(json);
+                var result = JsonConvert.DeserializeObject<ImdbEntity>(json);
 
-                if (obj.Response == "True")
+                if (result.Response == "True")
                 {
-                    tbTitle.Text = obj.Title;
-                    tbYear.Text = obj.Year;
-                    tbRated.Text = obj.imdbRating;
-                    tbReleased.Text = obj.Released;
-                    tbGenre.Text = obj.Genre;
-                    tbActors.Text = obj.Actors;
-                    tbPlot.Text = obj.Plot;
-                    tbMetascore.Text = obj.Metascore;
-                    pbPoster.ImageLocation = obj.Poster;
+                    tbTitle.Text = result.Title;
+                    tbYear.Text = result.Year;
+                    tbRated.Text = result.imdbRating;
+                    tbReleased.Text = result.Released;
+                    tbGenre.Text = result.Genre;
+                    tbActors.Text = result.Actors;
+                    tbPlot.Text = result.Plot;
+                    tbMetascore.Text = result.Metascore;
+                    pbPoster.ImageLocation = result.Poster;
                 }
                 else
                 {
@@ -78,39 +73,21 @@ namespace MoviesFromImdb
                 return;
             }
 
-            var connectionString = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            ImdbEntity obj = new ImdbEntity()
             {
-                using (SqlCommand cmd = new SqlCommand("AddNewMovie", conn))
-                {
-                    conn.Open();
+                Title = tbTitle.Text,
+                Year = tbYear.Text,
+                Rated = tbRated.Text,
+                Released = tbReleased.Text,
+                Genre = tbGenre.Text,
+                Actors = tbActors.Text,
+                Plot = tbPlot.Text,
+                Metascore = tbMetascore.Text,
+                Poster = pbPoster.ImageLocation
+            };
 
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Title", tbTitle.Text);
-                    cmd.Parameters.AddWithValue("@Year", tbYear.Text);
-                    cmd.Parameters.AddWithValue("@imdbRating", tbRated.Text);
-                    cmd.Parameters.AddWithValue("@Released", tbReleased.Text);
-                    cmd.Parameters.AddWithValue("@Genre", tbGenre.Text);
-                    cmd.Parameters.AddWithValue("@Actors", tbActors.Text);
-                    cmd.Parameters.AddWithValue("@Plot", tbPlot.Text);
-                    cmd.Parameters.AddWithValue("@Metascore", tbMetascore.Text);
-                    cmd.Parameters.AddWithValue("@Poster", pbPoster.ImageLocation);
+            DAL.AddMovie(obj);
 
-                    var i = cmd.ExecuteNonQuery();
-
-                    if (i >= 1)
-                    {
-                        MessageBox.Show("Movie is added to watch list!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Movie already exist in your watchlist!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-
-                }
-            }
         }
 
         private void btnWatchList_Click(object sender, EventArgs e)
@@ -129,6 +106,12 @@ namespace MoviesFromImdb
             if (e.KeyCode == Keys.Escape) this.Close();
 
             if (e.KeyCode == Keys.Enter) btnSearch.PerformClick();
+        }
+
+        private void btnTop100_Click(object sender, EventArgs e)
+        {
+            Top100IMDbForm frm = new Top100IMDbForm();
+            frm.ShowDialog();
         }
     }
 }

@@ -48,6 +48,7 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.pbPoster = new System.Windows.Forms.PictureBox();
+            this.btnAddToWatchlist = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).BeginInit();
             this.SuspendLayout();
             // 
@@ -190,7 +191,7 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(254, 365);
+            this.btnLeft.Location = new System.Drawing.Point(89, 365);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 23);
             this.btnLeft.TabIndex = 37;
@@ -217,11 +218,22 @@
             this.pbPoster.TabIndex = 26;
             this.pbPoster.TabStop = false;
             // 
+            // btnAddToWatchlist
+            // 
+            this.btnAddToWatchlist.Location = new System.Drawing.Point(260, 365);
+            this.btnAddToWatchlist.Name = "btnAddToWatchlist";
+            this.btnAddToWatchlist.Size = new System.Drawing.Size(105, 23);
+            this.btnAddToWatchlist.TabIndex = 39;
+            this.btnAddToWatchlist.Text = "Add to Watchlist";
+            this.btnAddToWatchlist.UseVisualStyleBackColor = true;
+            this.btnAddToWatchlist.Click += new System.EventHandler(this.btnAddToWatchlist_Click);
+            // 
             // MovieDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 400);
+            this.Controls.Add(this.btnAddToWatchlist);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.label8);
@@ -275,5 +287,6 @@
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnRight;
+        private System.Windows.Forms.Button btnAddToWatchlist;
     }
 }

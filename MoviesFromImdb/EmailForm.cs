@@ -50,11 +50,18 @@ namespace MoviesFromImdb
                 mail.Attachments.Add(attachment);
 
 
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("youremail@gmail.com", "yourpass");
-                SmtpServer.EnableSsl = true;
+                try
+                {
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("youremail@gmail.com", "yourpass");
+                    SmtpServer.EnableSsl = true;
 
-                SmtpServer.Send(mail);
+                    SmtpServer.Send(mail);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("E-mail not sent! Notice: It is possible that you need to enable access to third-party sites&&apps on your email account", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
                 MessageBox.Show("E-mail successfully sent to address: " + tbSendEmail.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
