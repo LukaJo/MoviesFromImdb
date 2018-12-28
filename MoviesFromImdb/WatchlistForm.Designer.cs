@@ -30,19 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WatchlistForm));
             this.gridMovies = new System.Windows.Forms.DataGridView();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imdbRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Released = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Actors = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Plot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Metascore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Watched = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miMovieDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.miChangeStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +47,21 @@
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
             this.btnWa = new System.Windows.Forms.Button();
+            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Plot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imdbRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Metascore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Actors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Released = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Watched = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnClipboard = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridMovies)).BeginInit();
             this.cmsOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMovies)).BeginInit();
@@ -78,14 +85,15 @@
             this.gridMovies.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMovies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMovies.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Image,
             this.Title,
-            this.Year,
+            this.Plot,
             this.imdbRating,
-            this.Released,
+            this.Metascore,
             this.Genre,
             this.Actors,
-            this.Plot,
-            this.Metascore,
+            this.Year,
+            this.Released,
             this.Poster,
             this.Watched,
             this.MovieId});
@@ -95,98 +103,11 @@
             this.gridMovies.Name = "gridMovies";
             this.gridMovies.ReadOnly = true;
             this.gridMovies.RowHeadersVisible = false;
-            this.gridMovies.Size = new System.Drawing.Size(776, 339);
+            this.gridMovies.RowTemplate.Height = 100;
+            this.gridMovies.Size = new System.Drawing.Size(1221, 339);
             this.gridMovies.TabIndex = 0;
             this.gridMovies.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridMovies_CellFormatting);
             this.gridMovies.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridMovies_CellMouseDown);
-            // 
-            // Title
-            // 
-            this.Title.DataPropertyName = "Title";
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            this.Title.Width = 210;
-            // 
-            // Year
-            // 
-            this.Year.DataPropertyName = "Year";
-            this.Year.HeaderText = "Year";
-            this.Year.Name = "Year";
-            this.Year.ReadOnly = true;
-            this.Year.Width = 50;
-            // 
-            // imdbRating
-            // 
-            this.imdbRating.DataPropertyName = "imdbRating";
-            this.imdbRating.HeaderText = "IMDb Rating";
-            this.imdbRating.Name = "imdbRating";
-            this.imdbRating.ReadOnly = true;
-            this.imdbRating.Width = 50;
-            // 
-            // Released
-            // 
-            this.Released.DataPropertyName = "Released";
-            this.Released.HeaderText = "Released";
-            this.Released.Name = "Released";
-            this.Released.ReadOnly = true;
-            // 
-            // Genre
-            // 
-            this.Genre.DataPropertyName = "Genre";
-            this.Genre.HeaderText = "Genre";
-            this.Genre.Name = "Genre";
-            this.Genre.ReadOnly = true;
-            this.Genre.Width = 150;
-            // 
-            // Actors
-            // 
-            this.Actors.DataPropertyName = "Actors";
-            this.Actors.HeaderText = "Actors";
-            this.Actors.Name = "Actors";
-            this.Actors.ReadOnly = true;
-            this.Actors.Width = 210;
-            // 
-            // Plot
-            // 
-            this.Plot.DataPropertyName = "Plot";
-            this.Plot.HeaderText = "Plot";
-            this.Plot.Name = "Plot";
-            this.Plot.ReadOnly = true;
-            this.Plot.Width = 400;
-            // 
-            // Metascore
-            // 
-            this.Metascore.DataPropertyName = "Metascore";
-            this.Metascore.HeaderText = "Metascore";
-            this.Metascore.Name = "Metascore";
-            this.Metascore.ReadOnly = true;
-            this.Metascore.Width = 80;
-            // 
-            // Poster
-            // 
-            this.Poster.DataPropertyName = "Poster";
-            this.Poster.HeaderText = "Poster";
-            this.Poster.Name = "Poster";
-            this.Poster.ReadOnly = true;
-            this.Poster.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Poster.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Watched
-            // 
-            this.Watched.DataPropertyName = "Watched";
-            this.Watched.HeaderText = "Watched";
-            this.Watched.Name = "Watched";
-            this.Watched.ReadOnly = true;
-            this.Watched.Width = 70;
-            // 
-            // MovieId
-            // 
-            this.MovieId.DataPropertyName = "MovieId";
-            this.MovieId.HeaderText = "MovieId";
-            this.MovieId.Name = "MovieId";
-            this.MovieId.ReadOnly = true;
-            this.MovieId.Visible = false;
             // 
             // cmsOptions
             // 
@@ -228,7 +149,7 @@
             this.lblFound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFound.AutoSize = true;
             this.lblFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFound.Location = new System.Drawing.Point(588, 10);
+            this.lblFound.Location = new System.Drawing.Point(1033, 10);
             this.lblFound.MinimumSize = new System.Drawing.Size(200, 13);
             this.lblFound.Name = "lblFound";
             this.lblFound.Size = new System.Drawing.Size(200, 13);
@@ -278,7 +199,7 @@
             // btnExcel
             // 
             this.btnExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcel.Location = new System.Drawing.Point(308, 386);
+            this.btnExcel.Location = new System.Drawing.Point(667, 387);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(156, 23);
             this.btnExcel.TabIndex = 72;
@@ -289,7 +210,7 @@
             // btnShare
             // 
             this.btnShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShare.Location = new System.Drawing.Point(473, 387);
+            this.btnShare.Location = new System.Drawing.Point(918, 387);
             this.btnShare.Name = "btnShare";
             this.btnShare.Size = new System.Drawing.Size(153, 23);
             this.btnShare.TabIndex = 73;
@@ -300,7 +221,7 @@
             // btnWa
             // 
             this.btnWa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWa.Location = new System.Drawing.Point(632, 386);
+            this.btnWa.Location = new System.Drawing.Point(1077, 386);
             this.btnWa.Name = "btnWa";
             this.btnWa.Size = new System.Drawing.Size(156, 23);
             this.btnWa.TabIndex = 74;
@@ -308,11 +229,148 @@
             this.btnWa.UseVisualStyleBackColor = true;
             this.btnWa.Click += new System.EventHandler(this.btnWa_Click);
             // 
+            // Image
+            // 
+            this.Image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Image.DataPropertyName = "Image";
+            this.Image.HeaderText = "Image";
+            this.Image.Name = "Image";
+            this.Image.ReadOnly = true;
+            this.Image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Image.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Image.Width = 61;
+            // 
+            // Title
+            // 
+            this.Title.DataPropertyName = "Title";
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Title.Width = 210;
+            // 
+            // Plot
+            // 
+            this.Plot.DataPropertyName = "Plot";
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Plot.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Plot.HeaderText = "Plot";
+            this.Plot.Name = "Plot";
+            this.Plot.ReadOnly = true;
+            this.Plot.Width = 400;
+            // 
+            // imdbRating
+            // 
+            this.imdbRating.DataPropertyName = "imdbRating";
+            this.imdbRating.HeaderText = "IMDb Rating";
+            this.imdbRating.Name = "imdbRating";
+            this.imdbRating.ReadOnly = true;
+            this.imdbRating.Width = 50;
+            // 
+            // Metascore
+            // 
+            this.Metascore.DataPropertyName = "Metascore";
+            this.Metascore.HeaderText = "Metascore";
+            this.Metascore.Name = "Metascore";
+            this.Metascore.ReadOnly = true;
+            this.Metascore.Width = 80;
+            // 
+            // Genre
+            // 
+            this.Genre.DataPropertyName = "Genre";
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Genre.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Genre.HeaderText = "Genre";
+            this.Genre.Name = "Genre";
+            this.Genre.ReadOnly = true;
+            this.Genre.Width = 150;
+            // 
+            // Actors
+            // 
+            this.Actors.DataPropertyName = "Actors";
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Actors.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Actors.HeaderText = "Actors";
+            this.Actors.Name = "Actors";
+            this.Actors.ReadOnly = true;
+            this.Actors.Width = 210;
+            // 
+            // Year
+            // 
+            this.Year.DataPropertyName = "Year";
+            this.Year.HeaderText = "Year";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            this.Year.Width = 50;
+            // 
+            // Released
+            // 
+            this.Released.DataPropertyName = "Released";
+            this.Released.HeaderText = "Released";
+            this.Released.Name = "Released";
+            this.Released.ReadOnly = true;
+            this.Released.Visible = false;
+            // 
+            // Poster
+            // 
+            this.Poster.DataPropertyName = "Poster";
+            this.Poster.HeaderText = "Poster";
+            this.Poster.Name = "Poster";
+            this.Poster.ReadOnly = true;
+            this.Poster.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Poster.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Poster.Visible = false;
+            // 
+            // Watched
+            // 
+            this.Watched.DataPropertyName = "Watched";
+            this.Watched.HeaderText = "Watched";
+            this.Watched.Name = "Watched";
+            this.Watched.ReadOnly = true;
+            this.Watched.Visible = false;
+            this.Watched.Width = 70;
+            // 
+            // MovieId
+            // 
+            this.MovieId.DataPropertyName = "MovieId";
+            this.MovieId.HeaderText = "MovieId";
+            this.MovieId.Name = "MovieId";
+            this.MovieId.ReadOnly = true;
+            this.MovieId.Visible = false;
+            // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.Location = new System.Drawing.Point(505, 386);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(156, 23);
+            this.btnPrint.TabIndex = 75;
+            this.btnPrint.Text = "Print watchlist";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnClipboard
+            // 
+            this.btnClipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClipboard.Location = new System.Drawing.Point(343, 386);
+            this.btnClipboard.Name = "btnClipboard";
+            this.btnClipboard.Size = new System.Drawing.Size(156, 23);
+            this.btnClipboard.TabIndex = 76;
+            this.btnClipboard.Text = "Copy watchlist to clipboard";
+            this.btnClipboard.UseVisualStyleBackColor = true;
+            this.btnClipboard.Click += new System.EventHandler(this.btnClipboard_Click);
+            // 
             // WatchlistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 425);
+            this.ClientSize = new System.Drawing.Size(1245, 425);
+            this.Controls.Add(this.btnClipboard);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnWa);
             this.Controls.Add(this.btnShare);
             this.Controls.Add(this.btnExcel);
@@ -323,7 +381,8 @@
             this.Controls.Add(this.gridMovies);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(816, 464);
+            this.MaximumSize = new System.Drawing.Size(1261, 464);
+            this.MinimumSize = new System.Drawing.Size(1261, 464);
             this.Name = "WatchlistForm";
             this.Text = "Watchlist";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WatchlistForm_KeyDown);
@@ -349,17 +408,21 @@
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Button btnShare;
+        private System.Windows.Forms.Button btnWa;
+        private System.Windows.Forms.DataGridViewImageColumn Image;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Plot;
         private System.Windows.Forms.DataGridViewTextBoxColumn imdbRating;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Released;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Metascore;
         private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Actors;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Plot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Metascore;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Released;
         private System.Windows.Forms.DataGridViewTextBoxColumn Poster;
         private System.Windows.Forms.DataGridViewTextBoxColumn Watched;
         private System.Windows.Forms.DataGridViewTextBoxColumn MovieId;
-        private System.Windows.Forms.Button btnWa;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnClipboard;
     }
 }

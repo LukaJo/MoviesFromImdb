@@ -25,6 +25,15 @@ namespace MoviesFromImdb
             dsMovies = DAL.GetAllMovies();
             bsMovies.DataSource = dsMovies.Tables[0];
             gridMovies.DataSource = bsMovies;
+
+            for (int i = 0; i < gridMovies.Columns.Count; i++)
+                if (gridMovies.Columns[i] is DataGridViewImageColumn)
+                {
+                    ((DataGridViewImageColumn)gridMovies.Columns[i]).ImageLayout = DataGridViewImageCellLayout.Zoom;
+
+                    break;
+                }
+
         }
 
 
@@ -279,6 +288,33 @@ namespace MoviesFromImdb
         {
             if (e.KeyCode == Keys.Escape) this.Close();
 
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bitmap = new Bitmap(this.gridMovies.Width, this.gridMovies.Height);
+            gridMovies.DrawToBitmap(bitmap, new Rectangle(0, 0, this.gridMovies.Width, this.gridMovies.Height));
+
+            //Save the Bitmap to folder.
+            bitmap.Save(@"C:\Users\your\Documents\TestApp\MoviesFromImdb\Watchlist.png");
+
+            e.Graphics.DrawImage(bitmap, 0, 0);
+            
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+             printDocument.Print();
+
+        }
+
+        private void btnClipboard_Click(object sender, EventArgs e)
+        {
+            gridMovies.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            gridMovies.SelectAll();
+            DataObject dataObj = gridMovies.GetClipboardContent();
+            Clipboard.SetDataObject(dataObj, true);
+            MessageBox.Show("Watchlist copied to clipboard!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
         }
     }
 }

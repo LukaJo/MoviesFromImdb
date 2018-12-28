@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MoviesFromImdb
@@ -90,6 +91,11 @@ namespace MoviesFromImdb
                 return;
             }
 
+            Image img = pbPoster.Image;
+            byte[] arr;
+            ImageConverter converter = new ImageConverter();
+            arr = (byte[])converter.ConvertTo(img, typeof(byte[]));
+
             ImdbEntity obj = new ImdbEntity()
             {
                 Title = tbTitle.Text,
@@ -100,7 +106,8 @@ namespace MoviesFromImdb
                 Actors = tbActors.Text,
                 Plot = tbPlot.Text,
                 Metascore = tbMetascore.Text,
-                Poster = pbPoster.ImageLocation
+                Poster = pbPoster.ImageLocation,
+                Picture = arr
             };
 
             DAL.AddMovie(obj);

@@ -56,6 +56,7 @@ namespace MoviesFromImdb
                     cmd.Parameters.AddWithValue("@Plot", imdbentity.Plot);
                     cmd.Parameters.AddWithValue("@Metascore", imdbentity.Metascore);
                     cmd.Parameters.AddWithValue("@Poster", imdbentity.Poster);
+                    cmd.Parameters.AddWithValue("@Image", imdbentity.Picture);
 
                     var i = cmd.ExecuteNonQuery();
 
