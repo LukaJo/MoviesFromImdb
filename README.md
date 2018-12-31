@@ -1,16 +1,22 @@
-![alt text](https://upload.wikimedia.org/wikipedia/commons/c/c0/Clapperboard_Icon.png)
+![picture alt](https://upload.wikimedia.org/wikipedia/commons/c/c0/Clapperboard_Icon.png)
 
-# Search Movies From Imdb
+# Search Movies From IMDb
 
 A C# Windows Forms application for searching movies from IMDb using OMDb API(RESTful web service).
 
 You can perform all CRUD operations with movies(Add to watchlist,show movie details,change movie status or delete the movie), filter movie by status(Watched/Not watched) and filter by movie title.
 
-You can make excel file with all movies in your watchlist and send by e-mail to friend.
+Other options:
 
-Also you can send movie details from watchlist to friend's WhatsApp(using WhatsApp API).
+* You can make excel file with all movies in your watchlist and send by e-mail to friend.
 
-Also you can see top 100 IMDb movies with options to show movie details and add them to your watchlist.
+* You can send movie details from watchlist to friend's WhatsApp(using WhatsApp API).
+
+* You can see top 100 IMDb movies with options to show movie details and add them to your watchlist.
+
+* There is option for movie recommendation (Recommend movie randomly from [excel file](https://github.com/LukaJo/MoviesFromImdb/blob/master/movies.xls) based on movie you searched for,to be concrete based on movie genre of movie you searched for and if u like recommendation you can save movie to your watchlist).
+
+* Also you can copy watchlist to clipboard and print it if you like.
 
 ## Installation
 
