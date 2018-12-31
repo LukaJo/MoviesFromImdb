@@ -55,6 +55,7 @@
             this.tbYearParameter = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnTop100 = new System.Windows.Forms.Button();
+            this.btnRecommend = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbPoster = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
@@ -286,13 +287,23 @@
             // 
             // btnTop100
             // 
-            this.btnTop100.Location = new System.Drawing.Point(616, 446);
+            this.btnTop100.Location = new System.Drawing.Point(573, 446);
             this.btnTop100.Name = "btnTop100";
-            this.btnTop100.Size = new System.Drawing.Size(125, 23);
+            this.btnTop100.Size = new System.Drawing.Size(106, 23);
             this.btnTop100.TabIndex = 26;
-            this.btnTop100.Text = "Top 100 IMDb movies";
+            this.btnTop100.Text = "Top 100 IMDb";
             this.btnTop100.UseVisualStyleBackColor = true;
             this.btnTop100.Click += new System.EventHandler(this.btnTop100_Click);
+            // 
+            // btnRecommend
+            // 
+            this.btnRecommend.Location = new System.Drawing.Point(685, 446);
+            this.btnRecommend.Name = "btnRecommend";
+            this.btnRecommend.Size = new System.Drawing.Size(116, 23);
+            this.btnRecommend.TabIndex = 27;
+            this.btnRecommend.Text = "Recommend movie";
+            this.btnRecommend.UseVisualStyleBackColor = true;
+            this.btnRecommend.Click += new System.EventHandler(this.btnRecommend_Click);
             // 
             // pictureBox1
             // 
@@ -318,6 +329,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 481);
+            this.Controls.Add(this.btnRecommend);
             this.Controls.Add(this.btnTop100);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.brnRefresh);
@@ -386,6 +398,7 @@
         private System.Windows.Forms.TextBox tbYearParameter;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnTop100;
+        private System.Windows.Forms.Button btnRecommend;
     }
 }
 

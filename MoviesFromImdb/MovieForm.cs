@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
@@ -120,5 +123,96 @@ namespace MoviesFromImdb
             Top100IMDbForm frm = new Top100IMDbForm();
             frm.ShowDialog();
         }
+
+        private void btnRecommend_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbSearch.Text))
+            {
+                MessageBox.Show("Please enter movie name and click search before we recommend you a movie!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string genre = tbGenre.Text;
+            string[] words = genre.Split(',');
+
+            String name = "movies";
+            String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+                            @"C:\Users\luka.jovic\Downloads\movies.xls" +
+                            ";Extended Properties='Excel 12.0;HDR=YES;';";
+
+            OleDbConnection con = new OleDbConnection(constr);
+            OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+            con.Open();
+
+            OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+            DataTable data = new DataTable();
+            sda.Fill(data);
+
+            List<string> movies = new List<string>();
+
+            #region withouth random iterator
+            //foreach (DataRow row in data.Rows)
+            //{
+            //    if (!string.IsNullOrEmpty(row[8].ToString()))
+            //    {
+            //        if (row[8].ToString().Contains(words[0]))
+            //        {
+            //            movies.Add(row[0].ToString());
+            //            if (movies.Count == 50)
+            //            {
+            //                break;
+            //            }
+
+            //        }
+
+            //    }
+            //}
+            #endregion
+
+            Random rndm = new Random();
+            int ra = rndm.Next(1, 1000);
+
+            for (int i = ra; i < data.Rows.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(data.Rows[i][8].ToString()))
+                {
+                    if (data.Rows[i][8].ToString().Contains(words[0]))
+                    {
+                        movies.Add(data.Rows[i][0].ToString());
+                        if (movies.Count == 50)
+                        {
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            Random rnd = new Random();
+            int r = rnd.Next(movies.Count);
+
+            string url = "http://www.omdbapi.com/?i=" + (string)movies[r].Trim() + "&apikey=e17f08db";
+
+            using (WebClient wc = new WebClient())
+            {
+                var json = wc.DownloadString(url);
+                var result = JsonConvert.DeserializeObject<ImdbEntity>(json);
+
+                if (result.Response == "True")
+                {
+                    MovieDetailsForm frm1 = new MovieDetailsForm(result);
+                    frm1.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Movie not found!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+
+           
+        }
     }
 }
+
