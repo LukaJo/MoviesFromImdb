@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExcelDataReader;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -213,7 +214,7 @@ namespace MoviesFromImdb
 
                 // Format column C as text before pasting results, this was required for my data
                 Excel.Range rng = xlWorkSheet.get_Range("C:C").Cells;
-                rng.NumberFormat = "@";
+                rng.Style.NumberFormatLocal = "@";
 
                 // Paste clipboard results to worksheet range
                 Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
@@ -226,9 +227,23 @@ namespace MoviesFromImdb
                     xlWorkSheet.Cells[1, i + 1] = gridMovies.Columns[i].HeaderText;
                 }
 
-                // Delete blank column K
+                // Delete blank column K,J,I,A,H
                 Excel.Range delRng = xlWorkSheet.get_Range("K:K").Cells;
                 delRng.Delete(Type.Missing);
+
+                Excel.Range delRng1 = xlWorkSheet.get_Range("J:J").Cells;
+                delRng1.Delete(Type.Missing);
+
+                Excel.Range delRng2 = xlWorkSheet.get_Range("I:I").Cells;
+                delRng2.Delete(Type.Missing);
+
+                Excel.Range delRng3 = xlWorkSheet.get_Range("A:A").Cells;
+                delRng3.Delete(Type.Missing);
+
+                Excel.Range delRng4 = xlWorkSheet.get_Range("H:H").Cells;
+                delRng4.Delete(Type.Missing);
+
+
 
 
                 // Save the excel file under the captured location from the SaveFileDialog
@@ -315,6 +330,33 @@ namespace MoviesFromImdb
             DataObject dataObj = gridMovies.GetClipboardContent();
             Clipboard.SetDataObject(dataObj, true);
             MessageBox.Show("Watchlist copied to clipboard!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+        }
+
+        private void btnLoadWatchlist_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Title = "Open Excel File";
+            openFileDialog1.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+
+            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+               var path = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+
+                using (var stream = File.Open(path, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var result = reader.AsDataSet(new ExcelDataSetConfiguration() { ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration() { UseHeaderRow = true } });
+
+                        FriendsWatchlist frm = new FriendsWatchlist(result);
+                        frm.ShowDialog();
+
+                    }
+                }
+
+            }
+           
+
+           
         }
     }
 }

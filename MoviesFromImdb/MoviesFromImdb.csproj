@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.4.2\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.4.2\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -43,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,6 +68,12 @@
     </Compile>
     <Compile Include="EmailForm.Designer.cs">
       <DependentUpon>EmailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FriendsWatchlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FriendsWatchlist.Designer.cs">
+      <DependentUpon>FriendsWatchlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Top100IMDb.cs" />
     <Compile Include="MovieDetailsForm.cs">
@@ -92,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="EmailForm.resx">
       <DependentUpon>EmailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendsWatchlist.resx">
+      <DependentUpon>FriendsWatchlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MovieDetailsForm.resx">
       <DependentUpon>MovieDetailsForm.cs</DependentUpon>
