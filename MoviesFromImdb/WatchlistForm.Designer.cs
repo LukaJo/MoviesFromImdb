@@ -35,22 +35,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WatchlistForm));
             this.gridMovies = new System.Windows.Forms.DataGridView();
-            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Plot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imdbRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Metascore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Actors = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Released = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Watched = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miMovieDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.miChangeStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.miDeleteMovie = new System.Windows.Forms.ToolStripMenuItem();
+            this.bsMovies = new System.Windows.Forms.BindingSource(this.components);
             this.lblFound = new System.Windows.Forms.Label();
             this.chbWatched = new System.Windows.Forms.CheckBox();
             this.chbNotWatched = new System.Windows.Forms.CheckBox();
@@ -62,8 +51,20 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnClipboard = new System.Windows.Forms.Button();
             this.btnLoadWatchlist = new System.Windows.Forms.Button();
-            this.bsMovies = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Plot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imdbRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Metascore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Actors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trailer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Runtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Watched = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridMovies)).BeginInit();
             this.cmsOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsMovies)).BeginInit();
@@ -95,7 +96,8 @@
             this.Genre,
             this.Actors,
             this.Year,
-            this.Released,
+            this.Trailer,
+            this.Runtime,
             this.Poster,
             this.Watched,
             this.MovieId});
@@ -110,115 +112,6 @@
             this.gridMovies.TabIndex = 0;
             this.gridMovies.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridMovies_CellFormatting);
             this.gridMovies.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridMovies_CellMouseDown);
-            // 
-            // Image
-            // 
-            this.Image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Image.DataPropertyName = "Image";
-            this.Image.HeaderText = "Image";
-            this.Image.Name = "Image";
-            this.Image.ReadOnly = true;
-            this.Image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Image.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Image.Width = 61;
-            // 
-            // Title
-            // 
-            this.Title.DataPropertyName = "Title";
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            this.Title.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Title.Width = 210;
-            // 
-            // Plot
-            // 
-            this.Plot.DataPropertyName = "Plot";
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Plot.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Plot.HeaderText = "Plot";
-            this.Plot.Name = "Plot";
-            this.Plot.ReadOnly = true;
-            this.Plot.Width = 400;
-            // 
-            // imdbRating
-            // 
-            this.imdbRating.DataPropertyName = "imdbRating";
-            this.imdbRating.HeaderText = "IMDb Rating";
-            this.imdbRating.Name = "imdbRating";
-            this.imdbRating.ReadOnly = true;
-            this.imdbRating.Width = 50;
-            // 
-            // Metascore
-            // 
-            this.Metascore.DataPropertyName = "Metascore";
-            this.Metascore.HeaderText = "Metascore";
-            this.Metascore.Name = "Metascore";
-            this.Metascore.ReadOnly = true;
-            this.Metascore.Width = 80;
-            // 
-            // Genre
-            // 
-            this.Genre.DataPropertyName = "Genre";
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Genre.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Genre.HeaderText = "Genre";
-            this.Genre.Name = "Genre";
-            this.Genre.ReadOnly = true;
-            this.Genre.Width = 150;
-            // 
-            // Actors
-            // 
-            this.Actors.DataPropertyName = "Actors";
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Actors.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Actors.HeaderText = "Actors";
-            this.Actors.Name = "Actors";
-            this.Actors.ReadOnly = true;
-            this.Actors.Width = 210;
-            // 
-            // Year
-            // 
-            this.Year.DataPropertyName = "Year";
-            this.Year.HeaderText = "Year";
-            this.Year.Name = "Year";
-            this.Year.ReadOnly = true;
-            this.Year.Width = 50;
-            // 
-            // Released
-            // 
-            this.Released.DataPropertyName = "Released";
-            this.Released.HeaderText = "Released";
-            this.Released.Name = "Released";
-            this.Released.ReadOnly = true;
-            this.Released.Visible = false;
-            // 
-            // Poster
-            // 
-            this.Poster.DataPropertyName = "Poster";
-            this.Poster.HeaderText = "Poster";
-            this.Poster.Name = "Poster";
-            this.Poster.ReadOnly = true;
-            this.Poster.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Poster.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Poster.Visible = false;
-            // 
-            // Watched
-            // 
-            this.Watched.DataPropertyName = "Watched";
-            this.Watched.HeaderText = "Watched";
-            this.Watched.Name = "Watched";
-            this.Watched.ReadOnly = true;
-            this.Watched.Visible = false;
-            this.Watched.Width = 70;
-            // 
-            // MovieId
-            // 
-            this.MovieId.DataPropertyName = "MovieId";
-            this.MovieId.HeaderText = "MovieId";
-            this.MovieId.Name = "MovieId";
-            this.MovieId.ReadOnly = true;
-            this.MovieId.Visible = false;
             // 
             // cmsOptions
             // 
@@ -250,6 +143,10 @@
             this.miDeleteMovie.Size = new System.Drawing.Size(190, 22);
             this.miDeleteMovie.Text = "Delete movie from list";
             this.miDeleteMovie.Click += new System.EventHandler(this.miDeleteMovie_Click);
+            // 
+            // bsMovies
+            // 
+            this.bsMovies.CurrentChanged += new System.EventHandler(this.bsMovies_CurrentChanged);
             // 
             // lblFound
             // 
@@ -373,13 +270,124 @@
             this.btnLoadWatchlist.UseVisualStyleBackColor = true;
             this.btnLoadWatchlist.Click += new System.EventHandler(this.btnLoadWatchlist_Click);
             // 
-            // bsMovies
-            // 
-            this.bsMovies.CurrentChanged += new System.EventHandler(this.bsMovies_CurrentChanged);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // Image
+            // 
+            this.Image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Image.DataPropertyName = "Image";
+            this.Image.HeaderText = "Image";
+            this.Image.Name = "Image";
+            this.Image.ReadOnly = true;
+            this.Image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Image.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Image.Width = 61;
+            // 
+            // Title
+            // 
+            this.Title.DataPropertyName = "Title";
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Title.Width = 210;
+            // 
+            // Plot
+            // 
+            this.Plot.DataPropertyName = "Plot";
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Plot.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Plot.HeaderText = "Plot";
+            this.Plot.Name = "Plot";
+            this.Plot.ReadOnly = true;
+            this.Plot.Width = 400;
+            // 
+            // imdbRating
+            // 
+            this.imdbRating.DataPropertyName = "imdbRating";
+            this.imdbRating.HeaderText = "IMDb Rating";
+            this.imdbRating.Name = "imdbRating";
+            this.imdbRating.ReadOnly = true;
+            this.imdbRating.Width = 50;
+            // 
+            // Metascore
+            // 
+            this.Metascore.DataPropertyName = "Metascore";
+            this.Metascore.HeaderText = "Metascore";
+            this.Metascore.Name = "Metascore";
+            this.Metascore.ReadOnly = true;
+            this.Metascore.Width = 80;
+            // 
+            // Genre
+            // 
+            this.Genre.DataPropertyName = "Genre";
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Genre.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Genre.HeaderText = "Genre";
+            this.Genre.Name = "Genre";
+            this.Genre.ReadOnly = true;
+            this.Genre.Width = 150;
+            // 
+            // Actors
+            // 
+            this.Actors.DataPropertyName = "Actors";
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Actors.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Actors.HeaderText = "Actors";
+            this.Actors.Name = "Actors";
+            this.Actors.ReadOnly = true;
+            this.Actors.Width = 210;
+            // 
+            // Year
+            // 
+            this.Year.DataPropertyName = "Year";
+            this.Year.HeaderText = "Year";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            this.Year.Width = 50;
+            // 
+            // Trailer
+            // 
+            this.Trailer.DataPropertyName = "Trailer";
+            this.Trailer.HeaderText = "Trailer";
+            this.Trailer.Name = "Trailer";
+            this.Trailer.ReadOnly = true;
+            // 
+            // Runtime
+            // 
+            this.Runtime.DataPropertyName = "Runtime";
+            this.Runtime.HeaderText = "Runtime";
+            this.Runtime.Name = "Runtime";
+            this.Runtime.ReadOnly = true;
+            // 
+            // Poster
+            // 
+            this.Poster.DataPropertyName = "Poster";
+            this.Poster.HeaderText = "Poster";
+            this.Poster.Name = "Poster";
+            this.Poster.ReadOnly = true;
+            this.Poster.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Poster.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Poster.Visible = false;
+            // 
+            // Watched
+            // 
+            this.Watched.DataPropertyName = "Watched";
+            this.Watched.HeaderText = "Watched";
+            this.Watched.Name = "Watched";
+            this.Watched.ReadOnly = true;
+            this.Watched.Visible = false;
+            this.Watched.Width = 70;
+            // 
+            // MovieId
+            // 
+            this.MovieId.DataPropertyName = "MovieId";
+            this.MovieId.HeaderText = "MovieId";
+            this.MovieId.Name = "MovieId";
+            this.MovieId.ReadOnly = true;
+            this.MovieId.Visible = false;
             // 
             // WatchlistForm
             // 
@@ -427,6 +435,11 @@
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.Button btnWa;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnClipboard;
+        private System.Windows.Forms.Button btnLoadWatchlist;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataGridViewImageColumn Image;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Plot;
@@ -435,14 +448,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Actors;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Released;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trailer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Runtime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Poster;
         private System.Windows.Forms.DataGridViewTextBoxColumn Watched;
         private System.Windows.Forms.DataGridViewTextBoxColumn MovieId;
-        private System.Drawing.Printing.PrintDocument printDocument;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnClipboard;
-        private System.Windows.Forms.Button btnLoadWatchlist;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

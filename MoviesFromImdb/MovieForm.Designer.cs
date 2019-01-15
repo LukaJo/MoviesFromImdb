@@ -34,7 +34,7 @@
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.tbYear = new System.Windows.Forms.TextBox();
             this.tbRated = new System.Windows.Forms.TextBox();
-            this.tbReleased = new System.Windows.Forms.TextBox();
+            this.tbRuntime = new System.Windows.Forms.TextBox();
             this.tbGenre = new System.Windows.Forms.TextBox();
             this.tbActors = new System.Windows.Forms.TextBox();
             this.tbPlot = new System.Windows.Forms.TextBox();
@@ -58,6 +58,7 @@
             this.btnRecommend = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbPoster = new System.Windows.Forms.PictureBox();
+            this.linkTrailer = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPoster)).BeginInit();
@@ -82,7 +83,7 @@
             // 
             // tbTitle
             // 
-            this.tbTitle.Location = new System.Drawing.Point(97, 115);
+            this.tbTitle.Location = new System.Drawing.Point(79, 115);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.ReadOnly = true;
             this.tbTitle.Size = new System.Drawing.Size(451, 20);
@@ -90,7 +91,7 @@
             // 
             // tbYear
             // 
-            this.tbYear.Location = new System.Drawing.Point(97, 151);
+            this.tbYear.Location = new System.Drawing.Point(79, 151);
             this.tbYear.Name = "tbYear";
             this.tbYear.ReadOnly = true;
             this.tbYear.Size = new System.Drawing.Size(451, 20);
@@ -98,23 +99,23 @@
             // 
             // tbRated
             // 
-            this.tbRated.Location = new System.Drawing.Point(97, 229);
+            this.tbRated.Location = new System.Drawing.Point(79, 229);
             this.tbRated.Name = "tbRated";
             this.tbRated.ReadOnly = true;
             this.tbRated.Size = new System.Drawing.Size(451, 20);
             this.tbRated.TabIndex = 5;
             // 
-            // tbReleased
+            // tbRuntime
             // 
-            this.tbReleased.Location = new System.Drawing.Point(97, 192);
-            this.tbReleased.Name = "tbReleased";
-            this.tbReleased.ReadOnly = true;
-            this.tbReleased.Size = new System.Drawing.Size(451, 20);
-            this.tbReleased.TabIndex = 6;
+            this.tbRuntime.Location = new System.Drawing.Point(79, 192);
+            this.tbRuntime.Name = "tbRuntime";
+            this.tbRuntime.ReadOnly = true;
+            this.tbRuntime.Size = new System.Drawing.Size(451, 20);
+            this.tbRuntime.TabIndex = 6;
             // 
             // tbGenre
             // 
-            this.tbGenre.Location = new System.Drawing.Point(97, 334);
+            this.tbGenre.Location = new System.Drawing.Point(79, 334);
             this.tbGenre.Name = "tbGenre";
             this.tbGenre.ReadOnly = true;
             this.tbGenre.Size = new System.Drawing.Size(451, 20);
@@ -122,7 +123,7 @@
             // 
             // tbActors
             // 
-            this.tbActors.Location = new System.Drawing.Point(97, 300);
+            this.tbActors.Location = new System.Drawing.Point(79, 300);
             this.tbActors.Name = "tbActors";
             this.tbActors.ReadOnly = true;
             this.tbActors.Size = new System.Drawing.Size(451, 20);
@@ -130,7 +131,7 @@
             // 
             // tbPlot
             // 
-            this.tbPlot.Location = new System.Drawing.Point(97, 368);
+            this.tbPlot.Location = new System.Drawing.Point(79, 368);
             this.tbPlot.Multiline = true;
             this.tbPlot.Name = "tbPlot";
             this.tbPlot.ReadOnly = true;
@@ -139,7 +140,7 @@
             // 
             // tbMetascore
             // 
-            this.tbMetascore.Location = new System.Drawing.Point(97, 263);
+            this.tbMetascore.Location = new System.Drawing.Point(79, 263);
             this.tbMetascore.Name = "tbMetascore";
             this.tbMetascore.ReadOnly = true;
             this.tbMetascore.Size = new System.Drawing.Size(451, 20);
@@ -148,7 +149,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 115);
+            this.label1.Location = new System.Drawing.Point(10, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 12;
@@ -157,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 151);
+            this.label2.Location = new System.Drawing.Point(10, 151);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 13;
@@ -166,7 +167,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 229);
+            this.label3.Location = new System.Drawing.Point(10, 229);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 14;
@@ -175,16 +176,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 192);
+            this.label4.Location = new System.Drawing.Point(10, 192);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Released";
+            this.label4.Text = "Runtime";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 334);
+            this.label5.Location = new System.Drawing.Point(9, 334);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 16;
@@ -193,7 +194,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 300);
+            this.label6.Location = new System.Drawing.Point(9, 300);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 17;
@@ -202,7 +203,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 263);
+            this.label7.Location = new System.Drawing.Point(9, 263);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 18;
@@ -211,7 +212,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 368);
+            this.label8.Location = new System.Drawing.Point(9, 368);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(25, 13);
             this.label8.TabIndex = 19;
@@ -228,7 +229,7 @@
             // 
             // btnAddToWatchlist
             // 
-            this.btnAddToWatchlist.Location = new System.Drawing.Point(268, 449);
+            this.btnAddToWatchlist.Location = new System.Drawing.Point(250, 465);
             this.btnAddToWatchlist.Name = "btnAddToWatchlist";
             this.btnAddToWatchlist.Size = new System.Drawing.Size(105, 23);
             this.btnAddToWatchlist.TabIndex = 21;
@@ -238,7 +239,7 @@
             // 
             // btnWatchList
             // 
-            this.btnWatchList.Location = new System.Drawing.Point(443, 446);
+            this.btnWatchList.Location = new System.Drawing.Point(425, 465);
             this.btnWatchList.Name = "btnWatchList";
             this.btnWatchList.Size = new System.Drawing.Size(105, 23);
             this.btnWatchList.TabIndex = 22;
@@ -248,7 +249,7 @@
             // 
             // brnRefresh
             // 
-            this.brnRefresh.Location = new System.Drawing.Point(97, 449);
+            this.brnRefresh.Location = new System.Drawing.Point(79, 465);
             this.brnRefresh.Name = "brnRefresh";
             this.brnRefresh.Size = new System.Drawing.Size(105, 23);
             this.brnRefresh.TabIndex = 24;
@@ -263,7 +264,7 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.tbSearch);
             this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Location = new System.Drawing.Point(30, 5);
+            this.groupBox1.Location = new System.Drawing.Point(12, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(518, 104);
             this.groupBox1.TabIndex = 25;
@@ -287,7 +288,7 @@
             // 
             // btnTop100
             // 
-            this.btnTop100.Location = new System.Drawing.Point(573, 446);
+            this.btnTop100.Location = new System.Drawing.Point(560, 465);
             this.btnTop100.Name = "btnTop100";
             this.btnTop100.Size = new System.Drawing.Size(106, 23);
             this.btnTop100.TabIndex = 26;
@@ -297,7 +298,7 @@
             // 
             // btnRecommend
             // 
-            this.btnRecommend.Location = new System.Drawing.Point(685, 446);
+            this.btnRecommend.Location = new System.Drawing.Point(672, 465);
             this.btnRecommend.Name = "btnRecommend";
             this.btnRecommend.Size = new System.Drawing.Size(116, 23);
             this.btnRecommend.TabIndex = 27;
@@ -308,7 +309,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::MoviesFromImdb.Properties.Resources.IMDB_Logo_2016;
-            this.pictureBox1.Location = new System.Drawing.Point(573, 21);
+            this.pictureBox1.Location = new System.Drawing.Point(576, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(202, 72);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -317,18 +318,30 @@
             // 
             // pbPoster
             // 
-            this.pbPoster.Location = new System.Drawing.Point(573, 115);
+            this.pbPoster.Location = new System.Drawing.Point(560, 106);
             this.pbPoster.Name = "pbPoster";
-            this.pbPoster.Size = new System.Drawing.Size(202, 328);
+            this.pbPoster.Size = new System.Drawing.Size(228, 328);
             this.pbPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPoster.TabIndex = 9;
             this.pbPoster.TabStop = false;
+            // 
+            // linkTrailer
+            // 
+            this.linkTrailer.AutoSize = true;
+            this.linkTrailer.Location = new System.Drawing.Point(643, 442);
+            this.linkTrailer.Name = "linkTrailer";
+            this.linkTrailer.Size = new System.Drawing.Size(67, 13);
+            this.linkTrailer.TabIndex = 29;
+            this.linkTrailer.TabStop = true;
+            this.linkTrailer.Text = "Watch trailer";
+            this.linkTrailer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkTrailer_LinkClicked);
             // 
             // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 481);
+            this.ClientSize = new System.Drawing.Size(800, 500);
+            this.Controls.Add(this.linkTrailer);
             this.Controls.Add(this.btnRecommend);
             this.Controls.Add(this.btnTop100);
             this.Controls.Add(this.groupBox1);
@@ -349,14 +362,12 @@
             this.Controls.Add(this.pbPoster);
             this.Controls.Add(this.tbActors);
             this.Controls.Add(this.tbGenre);
-            this.Controls.Add(this.tbReleased);
+            this.Controls.Add(this.tbRuntime);
             this.Controls.Add(this.tbRated);
             this.Controls.Add(this.tbYear);
             this.Controls.Add(this.tbTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MaximumSize = new System.Drawing.Size(816, 520);
-            this.MinimumSize = new System.Drawing.Size(816, 520);
             this.Name = "MovieForm";
             this.Text = "Search for Movie";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MovieForm_KeyDown);
@@ -375,7 +386,7 @@
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.TextBox tbYear;
         private System.Windows.Forms.TextBox tbRated;
-        private System.Windows.Forms.TextBox tbReleased;
+        private System.Windows.Forms.TextBox tbRuntime;
         private System.Windows.Forms.TextBox tbGenre;
         private System.Windows.Forms.TextBox tbActors;
         private System.Windows.Forms.PictureBox pbPoster;
@@ -399,6 +410,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnTop100;
         private System.Windows.Forms.Button btnRecommend;
+        private System.Windows.Forms.LinkLabel linkTrailer;
     }
 }
 

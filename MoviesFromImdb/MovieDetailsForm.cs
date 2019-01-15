@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using YoutubeSearch;
 
 namespace MoviesFromImdb
 {
@@ -22,7 +24,7 @@ namespace MoviesFromImdb
             tbTitle.Text = obj.Title;
             tbYear.Text = obj.Year;
             tbRated.Text = obj.imdbRating;
-            tbReleased.Text = obj.Released;
+            tbRuntime.Text = obj.Runtime;
             tbGenre.Text = obj.Genre;
             tbActors.Text = obj.Actors;
             tbPlot.Text = obj.Plot;
@@ -49,13 +51,14 @@ namespace MoviesFromImdb
             {
                 tbTitle.Text = drv["Title"].ToString();
                 tbYear.Text = drv["Year"].ToString();
-                tbReleased.Text = drv["Released"].ToString();
+                tbRuntime.Text = drv["Runtime"].ToString();
                 tbRated.Text = drv["imdbRating"].ToString();
                 tbGenre.Text = drv["Genre"].ToString();
                 tbActors.Text = drv["Actors"].ToString();
                 tbPlot.Text = drv["Plot"].ToString();
                 tbMetascore.Text = drv["Metascore"].ToString();
                 pbPoster.ImageLocation = drv["Poster"].ToString();
+                linkTrailer.Text = drv["trailer"].ToString();
 
                 btnLeft.Enabled = _bsMovies.IndexOf(drv) != 0;
                 btnRight.Enabled = _bsMovies.IndexOf(drv) != _bsMovies.Count - 1;
@@ -85,7 +88,7 @@ namespace MoviesFromImdb
 
         private void btnAddToWatchlist_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbTitle.Text) && string.IsNullOrEmpty(tbYear.Text) && string.IsNullOrEmpty(tbRated.Text) && string.IsNullOrEmpty(tbReleased.Text) && string.IsNullOrEmpty(tbGenre.Text) && string.IsNullOrEmpty(tbActors.Text) && string.IsNullOrEmpty(tbPlot.Text) && string.IsNullOrEmpty(tbMetascore.Text) && string.IsNullOrEmpty(pbPoster.ImageLocation))
+            if (string.IsNullOrEmpty(tbTitle.Text) && string.IsNullOrEmpty(tbYear.Text) && string.IsNullOrEmpty(tbRated.Text) && string.IsNullOrEmpty(tbRuntime.Text) && string.IsNullOrEmpty(tbGenre.Text) && string.IsNullOrEmpty(tbActors.Text) && string.IsNullOrEmpty(tbPlot.Text) && string.IsNullOrEmpty(tbMetascore.Text) && string.IsNullOrEmpty(pbPoster.ImageLocation))
             {
                 MessageBox.Show("Fields cannot be empty!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -101,7 +104,7 @@ namespace MoviesFromImdb
                 Title = tbTitle.Text,
                 Year = tbYear.Text,
                 Rated = tbRated.Text,
-                Released = tbReleased.Text,
+                Runtime = tbRuntime.Text,
                 Genre = tbGenre.Text,
                 Actors = tbActors.Text,
                 Plot = tbPlot.Text,
@@ -111,6 +114,11 @@ namespace MoviesFromImdb
             };
 
             DAL.AddMovie(obj);
+        }
+
+        private void linkTrailer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {      
+            System.Diagnostics.Process.Start(linkTrailer.Text);
         }
     }
 }

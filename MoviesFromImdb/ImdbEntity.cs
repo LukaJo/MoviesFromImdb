@@ -14,6 +14,8 @@
         public string imdbRating { get; set; }
         public string Response { get; set; }
         public byte[] Picture { get; set; }
+        public string Trailer { get; set; }
+        public string Runtime { get; set; }
         //public string Runtime { get; set; } add
         //public string imdbVotes { get; set; }
         //public string imdbID { get; set; }

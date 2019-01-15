@@ -50,13 +50,14 @@ namespace MoviesFromImdb
                     cmd.Parameters.AddWithValue("@Title", imdbentity.Title);
                     cmd.Parameters.AddWithValue("@Year", imdbentity.Year);
                     cmd.Parameters.AddWithValue("@imdbRating", imdbentity.Rated);
-                    cmd.Parameters.AddWithValue("@Released", imdbentity.Released);
+                    cmd.Parameters.AddWithValue("@Runtime", imdbentity.Runtime);
                     cmd.Parameters.AddWithValue("@Genre", imdbentity.Genre);
                     cmd.Parameters.AddWithValue("@Actors", imdbentity.Actors);
                     cmd.Parameters.AddWithValue("@Plot", imdbentity.Plot);
                     cmd.Parameters.AddWithValue("@Metascore", imdbentity.Metascore);
                     cmd.Parameters.AddWithValue("@Poster", imdbentity.Poster);
                     cmd.Parameters.AddWithValue("@Image", imdbentity.Picture);
+                    cmd.Parameters.AddWithValue("@Trailer", imdbentity.Trailer);
 
                     var i = cmd.ExecuteNonQuery();
 

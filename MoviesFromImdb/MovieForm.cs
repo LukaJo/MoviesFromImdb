@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using YoutubeSearch;
 
 namespace MoviesFromImdb
 {
@@ -53,7 +54,7 @@ namespace MoviesFromImdb
                     tbTitle.Text = result.Title;
                     tbYear.Text = result.Year;
                     tbRated.Text = result.imdbRating;
-                    tbReleased.Text = result.Released;
+                    tbRuntime.Text = result.Runtime;
                     tbGenre.Text = result.Genre;
                     tbActors.Text = result.Actors;
                     tbPlot.Text = result.Plot;
@@ -71,7 +72,7 @@ namespace MoviesFromImdb
 
         private void btnAddToWatchlist_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbTitle.Text) && string.IsNullOrEmpty(tbYear.Text) && string.IsNullOrEmpty(tbRated.Text) && string.IsNullOrEmpty(tbReleased.Text) && string.IsNullOrEmpty(tbGenre.Text) && string.IsNullOrEmpty(tbActors.Text) && string.IsNullOrEmpty(tbPlot.Text) && string.IsNullOrEmpty(tbMetascore.Text) && string.IsNullOrEmpty(pbPoster.ImageLocation))
+            if (string.IsNullOrEmpty(tbTitle.Text) && string.IsNullOrEmpty(tbYear.Text) && string.IsNullOrEmpty(tbRated.Text) && string.IsNullOrEmpty(tbRuntime.Text) && string.IsNullOrEmpty(tbGenre.Text) && string.IsNullOrEmpty(tbActors.Text) && string.IsNullOrEmpty(tbPlot.Text) && string.IsNullOrEmpty(tbMetascore.Text) && string.IsNullOrEmpty(pbPoster.ImageLocation))
             {
                 MessageBox.Show("Fields cannot be empty!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -87,13 +88,14 @@ namespace MoviesFromImdb
                 Title = tbTitle.Text,
                 Year = tbYear.Text,
                 Rated = tbRated.Text,
-                Released = tbReleased.Text,
+                Runtime = tbRuntime.Text,
                 Genre = tbGenre.Text,
                 Actors = tbActors.Text,
                 Plot = tbPlot.Text,
                 Metascore = tbMetascore.Text,
                 Poster = pbPoster.ImageLocation,
-                Picture = arr
+                Picture = arr,
+                Trailer = TrailerUrl()
             };
 
             DAL.AddMovie(obj);
@@ -108,7 +110,7 @@ namespace MoviesFromImdb
 
         private void brnRefresh_Click(object sender, EventArgs e)
         {
-            tbActors.Text = tbGenre.Text = tbMetascore.Text = tbPlot.Text = tbRated.Text = tbReleased.Text = tbSearch.Text = tbTitle.Text = tbYear.Text = tbYearParameter.Text = pbPoster.ImageLocation = string.Empty;
+            tbActors.Text = tbGenre.Text = tbMetascore.Text = tbPlot.Text = tbRated.Text = tbRuntime.Text = tbSearch.Text = tbTitle.Text = tbYear.Text = tbYearParameter.Text = pbPoster.ImageLocation = string.Empty;
         }
 
         private void MovieForm_KeyDown(object sender, KeyEventArgs e)
@@ -211,7 +213,45 @@ namespace MoviesFromImdb
 
             }
 
+
+        }
+
+        private string TrailerUrl()
+        {
+            string querystring = tbSearch.Text + "movie trailer" + tbYear.Text;
+
+            int querypages = 1;
+
+            List<string> trailer = new List<string>();
+
+            var items = new VideoSearch();
+
+            foreach (var item in items.SearchQuery(querystring, querypages))
+            {
+                trailer.Add(item.Url);
+                if (trailer.Count == 1)
+                {
+                    break;
+                }
+
+            }
+
+            string url = trailer[0].ToString();
+            return url;
+
+        }
+
+        private void linkTrailer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbSearch.Text) || string.IsNullOrEmpty(tbYear.Text))
+            {
+                MessageBox.Show("Please enter movie name!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var url = TrailerUrl();
            
+            System.Diagnostics.Process.Start(url);
         }
     }
 }
