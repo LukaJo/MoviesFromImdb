@@ -12,13 +12,15 @@ CREATE TABLE [dbo].[Imdb](
 	[Title] [varchar](50) NULL,
 	[Year] [varchar](50) NULL,
 	[imdbRating] [varchar](50) NULL,
-	[Released] [varchar](50) NULL,
+	[Runtime] [varchar](50) NULL,
 	[Genre] [varchar](50) NULL,
 	[Actors] [varchar](100) NULL,
 	[Plot] [varchar](500) NULL,
 	[Metascore] [varchar](50) NULL,
 	[Poster] [varchar](150) NULL,
 	[Watched] [varchar](1) NULL,
+        [Trailer] [varchar](100) NULL,
+        [Image] [image] NULL,
  CONSTRAINT [PK_Imdb] PRIMARY KEY CLUSTERED 
 (
 	[MovieId] ASC
@@ -38,12 +40,14 @@ CREATE PROCEDURE [dbo].[AddNewMovie]
    @Title varchar (50),  
    @Year varchar (50),  
    @imdbRating varchar (50),
-   @Released varchar (50),  
+   @Runtime varchar (50),  
    @Genre varchar (50),  
    @Actors varchar (100),
    @Plot varchar (500),  
    @Metascore varchar (50),  
-   @Poster varchar (150)     
+   @Poster varchar (150),
+   @Image image,
+   @Trailer varchar (100)     
 )  
 AS  
 IF NOT EXISTS(SELECT Title FROM Imdb WHERE Title = @Title and Year = @Year)
@@ -53,15 +57,18 @@ BEGIN
            ([Title]
            ,[Year]
            ,[imdbRating]
-           ,[Released]
+           ,[Runtime]
            ,[Genre]
            ,[Actors]
            ,[Plot]
            ,[Metascore]
            ,[Poster]
-           ,[Watched])
+           ,[Watched]
+		   ,[Image]
+		   ,[Trailer]
+		   )
      VALUES
-           (@Title,@Year,@imdbRating,@Released,@Genre,@Actors,@Plot,@Metascore,@Poster,'N')
+           (@Title,@Year,@imdbRating,@Runtime,@Genre,@Actors,@Plot,@Metascore,@Poster,'N',@Image,@Trailer)
 
 END  
 
