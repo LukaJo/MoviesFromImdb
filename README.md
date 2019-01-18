@@ -14,7 +14,7 @@ Other options:
 
 * You can see top 100 IMDb movies with options to show movie details and add them to your watchlist.
 
-* You can watch movie trailer
+* You can watch movie trailer on YouTube
 
 * There is option for movie recommendation (Recommend movie randomly from [excel file](https://github.com/LukaJo/MoviesFromImdb/blob/master/movies.xls) based on movie you searched for,to be concrete based on movie genre of movie you searched for and if u like recommendation you can save movie to your watchlist).
 
