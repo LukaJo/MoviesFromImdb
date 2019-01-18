@@ -32,7 +32,7 @@ namespace MoviesFromImdb
             }
             string json = File.ReadAllText(@"C:\Users\your\Documents\TestApp\MoviesFromImdb\top100.json");
             var result = JsonConvert.DeserializeObject<List<Top100IMDb>>(json);
-            gridTop100.AutoGenerateColumns = true;           
+            gridTop100.AutoGenerateColumns = true;
             gridTop100.DataSource = result;
 
             this.gridTop100.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -46,7 +46,7 @@ namespace MoviesFromImdb
         {
             string url = "http://www.omdbapi.com/?i=" + gridTop100[2, gridTop100.CurrentCell.RowIndex].Value.ToString().Trim() + "&apikey=e17f08db";
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = new WebClient() { Encoding = Encoding.UTF8 })
             {
                 var json = wc.DownloadString(url);
                 var result = JsonConvert.DeserializeObject<ImdbEntity>(json);

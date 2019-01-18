@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using YoutubeSearch;
@@ -44,7 +45,7 @@ namespace MoviesFromImdb
                 url = "http://www.omdbapi.com/?t=" + tbSearch.Text.Trim() + "&y=" + tbYearParameter.Text.Trim() + "&apikey=e17f08db";
             }
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = new WebClient() { Encoding = Encoding.UTF8 })
             {
                 var json = wc.DownloadString(url);
                 var result = JsonConvert.DeserializeObject<ImdbEntity>(json);
@@ -195,7 +196,7 @@ namespace MoviesFromImdb
 
             string url = "http://www.omdbapi.com/?i=" + (string)movies[r].Trim() + "&apikey=e17f08db";
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = new WebClient() { Encoding = Encoding.UTF8 })
             {
                 var json = wc.DownloadString(url);
                 var result = JsonConvert.DeserializeObject<ImdbEntity>(json);
@@ -250,7 +251,7 @@ namespace MoviesFromImdb
             }
 
             var url = TrailerUrl();
-           
+
             System.Diagnostics.Process.Start(url);
         }
     }
