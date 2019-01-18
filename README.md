@@ -8,11 +8,13 @@ You can perform all CRUD operations with movies(Add to watchlist,show movie deta
 
 Other options:
 
-* You can make excel file with all movies in your watchlist and send by e-mail to friend.
+* You can make excel file with all movies in your watchlist and send by e-mail to friend.Also you can load someone's watchlist.
 
 * You can send movie details from watchlist to friend's WhatsApp(using WhatsApp API).
 
 * You can see top 100 IMDb movies with options to show movie details and add them to your watchlist.
+
+* You can watch movie trailer
 
 * There is option for movie recommendation (Recommend movie randomly from [excel file](https://github.com/LukaJo/MoviesFromImdb/blob/master/movies.xls) based on movie you searched for,to be concrete based on movie genre of movie you searched for and if u like recommendation you can save movie to your watchlist).
 
