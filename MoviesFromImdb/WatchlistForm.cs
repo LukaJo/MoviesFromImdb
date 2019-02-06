@@ -314,12 +314,12 @@ namespace MoviesFromImdb
             bitmap.Save(@"C:\Users\your\Documents\TestApp\MoviesFromImdb\Watchlist.png");
 
             e.Graphics.DrawImage(bitmap, 0, 0);
-            
+
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-             printDocument.Print();
+            printDocument.Print();
 
         }
 
@@ -329,7 +329,7 @@ namespace MoviesFromImdb
             gridMovies.SelectAll();
             DataObject dataObj = gridMovies.GetClipboardContent();
             Clipboard.SetDataObject(dataObj, true);
-            MessageBox.Show("Watchlist copied to clipboard!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            MessageBox.Show("Watchlist copied to clipboard!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLoadWatchlist_Click(object sender, EventArgs e)
@@ -339,7 +339,7 @@ namespace MoviesFromImdb
 
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
-               var path = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+                var path = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
 
                 using (var stream = File.Open(path, FileMode.Open, FileAccess.Read))
                 {
@@ -354,9 +354,29 @@ namespace MoviesFromImdb
                 }
 
             }
-           
 
-           
+
+
+        }
+
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            gridMovies.SendToBack();
+            chart.BringToFront();
+
+            chart.DataSource = bsMovies;
+            chart.Series["IMDb Rating"].XValueMember = "Title";
+            chart.Series["IMDb Rating"].YValueMembers = "imdbRating";
+
+            btnChart.SendToBack();
+        }
+
+        private void btnGrid_Click(object sender, EventArgs e)
+        {
+            chart.SendToBack();
+            gridMovies.BringToFront();
+
+            btnGrid.SendToBack();
         }
     }
 }
