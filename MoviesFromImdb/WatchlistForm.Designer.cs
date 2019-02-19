@@ -64,7 +64,6 @@
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnShare = new System.Windows.Forms.Button();
             this.btnWa = new System.Windows.Forms.Button();
-            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnClipboard = new System.Windows.Forms.Button();
             this.btnLoadWatchlist = new System.Windows.Forms.Button();
@@ -316,7 +315,7 @@
             this.tbTitle.Location = new System.Drawing.Point(12, 389);
             this.tbTitle.MinimumSize = new System.Drawing.Size(139, 20);
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(139, 20);
+            this.tbTitle.Size = new System.Drawing.Size(224, 20);
             this.tbTitle.TabIndex = 71;
             this.tbTitle.Text = "Title...";
             this.tbTitle.TextChanged += new System.EventHandler(this.tbTitle_TextChanged);
@@ -355,10 +354,6 @@
             this.btnWa.Text = "Send to WhatsApp";
             this.btnWa.UseVisualStyleBackColor = true;
             this.btnWa.Click += new System.EventHandler(this.btnWa_Click);
-            // 
-            // printDocument
-            // 
-            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
             // 
             // btnPrint
             // 
@@ -462,6 +457,7 @@
             this.MinimumSize = new System.Drawing.Size(1261, 464);
             this.Name = "WatchlistForm";
             this.Text = "Watchlist";
+            this.Load += new System.EventHandler(this.WatchlistForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WatchlistForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridMovies)).EndInit();
             this.cmsOptions.ResumeLayout(false);
@@ -487,7 +483,6 @@
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.Button btnWa;
-        private System.Drawing.Printing.PrintDocument printDocument;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnClipboard;
         private System.Windows.Forms.Button btnLoadWatchlist;

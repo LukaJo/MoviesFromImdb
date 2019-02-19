@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL.cs" />
+    <Compile Include="DGVPrinter.cs" />
     <Compile Include="EmailForm.cs">
       <SubType>Form</SubType>
     </Compile>

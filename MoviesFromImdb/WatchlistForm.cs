@@ -1,5 +1,7 @@
-﻿using ExcelDataReader;
+﻿using DGVPrinterHelper;
+using ExcelDataReader;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -105,16 +107,20 @@ namespace MoviesFromImdb
 
         private void gridMovies_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            var watched = gridMovies["Watched", e.RowIndex].Value.ToString();
+            if (printovanje != true)
+            {
+                var watched = gridMovies["Watched", e.RowIndex].Value.ToString();
 
-            if (watched == "N")
-            {
-                gridMovies.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
+                if (watched == "N")
+                {
+                    gridMovies.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
+                }
+                if (watched == "Y")
+                {
+                    gridMovies.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                }
             }
-            if (watched == "Y")
-            {
-                gridMovies.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-            }
+
         }
 
         private void chbWatched_CheckedChanged(object sender, EventArgs e)
@@ -142,7 +148,7 @@ namespace MoviesFromImdb
         #region filter by Title
         private void tbTitle_TextChanged(object sender, EventArgs e)
         {
-            bsMovies.Filter = string.Format("Title LIKE '%{0}%'", tbTitle.Text);
+            bsMovies.Filter = string.Format("Title LIKE '{0}%'", tbTitle.Text);
         }
 
         private void tbTitle_Enter(object sender, EventArgs e)
@@ -305,22 +311,27 @@ namespace MoviesFromImdb
 
         }
 
-        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            Bitmap bitmap = new Bitmap(this.gridMovies.Width, this.gridMovies.Height);
-            gridMovies.DrawToBitmap(bitmap, new Rectangle(0, 0, this.gridMovies.Width, this.gridMovies.Height));
-
-            //Save the Bitmap to folder.
-            bitmap.Save(@"C:\Users\your\Documents\TestApp\MoviesFromImdb\Watchlist.png");
-
-            e.Graphics.DrawImage(bitmap, 0, 0);
-
-        }
+        private bool printovanje = false;
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            printDocument.Print();
+            printovanje = true;
 
+            DGVPrinter printer = new DGVPrinter();
+
+            printer.Title = "Watchlist";
+            printer.SubTitle = "Movies for watching";
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = false;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
+            printer.RowHeight = DGVPrinter.RowHeightSetting.CellHeight;
+            printer.Footer = "Date :" + DateTime.Now.ToShortDateString();
+            printer.FooterSpacing = 15;
+
+            printer.PrintDataGridView(gridMovies);
         }
 
         private void btnClipboard_Click(object sender, EventArgs e)
@@ -355,8 +366,6 @@ namespace MoviesFromImdb
 
             }
 
-
-
         }
 
         private void btnChart_Click(object sender, EventArgs e)
@@ -377,6 +386,23 @@ namespace MoviesFromImdb
             gridMovies.BringToFront();
 
             btnGrid.SendToBack();
+
         }
+
+        private void WatchlistForm_Load(object sender, EventArgs e)
+        {
+            AutoCompleteStringCollection ac = new AutoCompleteStringCollection();
+            foreach (DataGridViewRow row in gridMovies.Rows)
+            {
+                string data = gridMovies["Title", row.Index].Value.ToString();
+                ac.Add(data);
+            }
+            tbTitle.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            tbTitle.AutoCompleteMode = AutoCompleteMode.Suggest;
+            tbTitle.AutoCompleteCustomSource = ac;
+        }
+
+
+
     }
 }
